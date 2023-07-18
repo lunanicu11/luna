@@ -25,20 +25,6 @@ export default defineConfig({
     },
   },
 
-  // branch,
-  // clientId: "89a79512-6570-4fab-90f1-5ad83348ee0f", // Get this from tina.io
-  // token: "edfda3a353d221547cb84ed3524eb00b5100b92b", // Get this from tina.io
-
-  // build: {
-  //   outputFolder: "admin",
-  //   publicFolder: "static",
-  // },
-  // media: {
-  //   tina: {
-  //     mediaRoot: "uploads",
-  //     publicFolder: "content",
-  //   },
-  // },
   schema: {
     collections: [
       {
