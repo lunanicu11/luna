@@ -1,24 +1,6 @@
-## Use
+baseURL = "$HUGO_BASEURL"
+disableKinds = ["page", "section", "taxonomy", "term"]
 
-with tina
-
-```bash
-npm install
-npm run dev
-```
-
-of for only hugo
-
-```bash
-npm install
-npm hugo server
-```
-
-## For tailwind
-
-You need to add this to your `hugo.toml`:
-
-```toml
 [module]
   [module.hugoVersion]
     extended = false
@@ -44,6 +26,3 @@ You need to add this to your `hugo.toml`:
   [[build.cachebusters]]
     source = "assets/.*\\.(.*)$"
     target = "$1"
-```
-
-Then run your project as usual.

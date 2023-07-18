@@ -1,0 +1,10 @@
+node_modules/
+public/
+.hugo_build.lock
+.env
+
+# resources shoud be removed if the deploy takes long time 
+# resources/
+
+resources/**/*.content
+resources/**/*.json
