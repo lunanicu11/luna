@@ -3,6 +3,7 @@
     "tags": [
       "body",
       "div",
+      "h1",
       "head",
       "html",
       "link",
@@ -13,9 +14,12 @@
     ],
     "classes": [
       "container",
+      "font-bold",
       "lg:mx-auto",
       "my-10",
       "px-4",
+      "text-8xl",
+      "text-9xl",
       "text-red-500",
       "text-red-600"
     ],

@@ -8,3 +8,4 @@ public/
 
 resources/**/*.content
 resources/**/*.json
+node_modules
