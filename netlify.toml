@@ -1,18 +1,18 @@
 [build]
 publish = "public"
-command = "tinacms build && hugo hugo --gc --minify -d public;"
+command = "tinacms build && hugo --gc --minify -d public;"
 
 [context.production.environment]
 HUGO_VERSION = "0.115.3"
 
 [context.branch-deploy]
-command = "tinacms build && hugo hugo --minify --gc -d public -b $DEPLOY_PRIME_URL"
+command = "tinacms build && hugo --minify --gc -d public -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy.environment]
 HUGO_VERSION = "0.115.3"
 
 [context.deploy-preview]
-command = "tinacms build && hugo hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
+command = "tinacms build && hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.115.3"
