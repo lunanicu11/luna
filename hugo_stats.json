@@ -2,7 +2,6 @@
   "htmlElements": {
     "tags": [
       "body",
-      "div",
       "footer",
       "h1",
       "head",
@@ -16,15 +15,10 @@
       "title"
     ],
     "classes": [
-      "container",
       "font-bold",
-      "lg:mx-auto",
-      "my-10",
       "pb7",
-      "px-4",
       "text-9xl",
-      "text-red-500",
-      "text-red-600"
+      "text-red-500"
     ],
     "ids": null
   }
