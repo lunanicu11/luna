@@ -3,13 +3,16 @@
     "tags": [
       "body",
       "div",
+      "footer",
       "h1",
       "head",
+      "header",
       "html",
       "link",
+      "main",
       "meta",
+      "nav",
       "script",
-      "span",
       "title"
     ],
     "classes": [
@@ -17,8 +20,8 @@
       "font-bold",
       "lg:mx-auto",
       "my-10",
+      "pb7",
       "px-4",
-      "text-8xl",
       "text-9xl",
       "text-red-500",
       "text-red-600"

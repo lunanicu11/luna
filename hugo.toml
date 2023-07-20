@@ -1,5 +1,15 @@
 baseURL = "$HUGO_BASEURL"
+title = "Art website"
 disableKinds = ["page", "section", "taxonomy", "term"]
+
+[params]
+favicon = ""
+site_logo = ""
+# [outputs]
+# #gallery = ["html", "json"]
+# page = ["html", "json"]
+# list = ["html", "json"]
+# single = ["html", "json"]
 
 [module]
   [module.hugoVersion]

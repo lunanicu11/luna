@@ -1,0 +1,131 @@
+{{ $images := $.Scratch }}
+
+{{ if and .Params.dimensions.width .Params.dimensions.height }}
+  {{ $images.Set "ratio" (div ( div .Params.dimensions.height 1.00) .Params.dimensions.width  | lang.FormatNumber 2) -}}
+{{ end }}
+{{ $ratio := $images.Get "ratio" }}
+{{ $images.Set "slider" slice }}
+{{ $images.Set "thumb" slice }}
+{{ $images.Set "assets" slice }}
+{{ $images.Set "color" slice }}
+
+{{ $images.Set "_type" "" }}
+{{ $images.Set "_index" "" }}
+{{ $images.Set "_ratio" "" }}
+{{ $images.Set "_thumb_XL" "" }}
+{{ $images.Set "_thumb_XL_w" "" }}
+{{ $images.Set "_thumb_XL_h" "" }}
+{{ $images.Set "_thumb_L" "" }}
+{{ $images.Set "_thumb_L_w" "" }}
+{{ $images.Set "_thumb_L_h" "" }}
+{{ $images.Set "_thumb_M" "" }}
+{{ $images.Set "_thumb_M_w" "" }}
+{{ $images.Set "_thumb_M_h" "" }}
+
+{{ if .Params.images }}
+  {{ $imagesList := .Params.images }}
+  {{ range $index, $img := $imagesList }}
+    {{ $sourceItem := strings.TrimPrefix "/uploads/" $img.asset }}
+    {{ $type := $img.type }}
+    {{ $description := $img.description }}
+    {{ range $.Site.Pages }}
+      {{ with .Resources.Match $sourceItem }}
+        {{ range . }}
+          {{ $gallery_XL := .Resize "1052x center q100 picture webp" }}
+          {{ $gallery_L := .Resize "800x center q100 picture webp" }}
+          {{ $gallery_M := .Resize "370x center q100 picture webp" }}
+          {{ $.Scratch.Add "slider" (slice (dict
+            "type" $type
+            "index" $index
+            "description" $description
+            "gallery_Xl" $gallery_XL.RelPermalink
+            "gallery_Xl_w" $gallery_XL.Width
+            "gallery_Xl_h" $gallery_XL.Height
+            "gallery_L" $gallery_L.RelPermalink
+            "gallery_L_w" $gallery_L.Width
+            "gallery_L_h" $gallery_L.Height
+            "gallery_M" $gallery_M.RelPermalink
+            "gallery_M_w" $gallery_M.Width
+            "gallery_M_h" $gallery_M.Height
+            ))
+          }}
+        {{ end }}
+        {{ range . }}
+          {{ if eq $type "main" }}
+            {{ $colorSource := .Fill "1x1 q100 picture webp" }}
+            {{ $color := $colorSource.Colors }}
+            {{ $images.Set "color" $color }}
+
+            {{ if and $ratio (gt $ratio 1.8) }}
+              {{ $thumb_XL := .Fill "500x800 smart q100 picture webp" }}
+              {{ $thumb_L := .Fill "400x700 smart q100 picture webp" }}
+              {{ $thumb_M := .Fill "300x500 smart q100 picture webp" }}
+
+              {{ $images.Set "_type" $type }}
+              {{ $images.Set "_index" $index }}
+              {{ $images.Set "_ratio" $ratio }}
+              {{ $images.Set "_thumb_XL" $thumb_XL.RelPermalink }}
+              {{ $images.Set "_thumb_XL_w" $thumb_XL.Width }}
+              {{ $images.Set "_thumb_XL_h" $thumb_XL.Height }}
+              {{ $images.Set "_thumb_L" $thumb_L.RelPermalink }}
+              {{ $images.Set "_thumb_L_w" $thumb_L.Width }}
+              {{ $images.Set "_thumb_L_h" $thumb_L.Height }}
+              {{ $images.Set "_thumb_M" $thumb_M.RelPermalink }}
+              {{ $images.Set "_thumb_M_w" $thumb_M.Width }}
+              {{ $images.Set "_thumb_M_h" $thumb_M.Height }}
+
+              {{ $images.Set "thumb" (slice (dict
+                "type" $type
+                "index" $index
+                "ratio" $ratio
+                "thumb_XL" $thumb_XL.RelPermalink
+                "thumb_XL_w" $thumb_XL.Width
+                "thumb_XL_h" $thumb_XL.Height
+                "thumb_L" $thumb_L.RelPermalink
+                "thumb_L_w" $thumb_L.Width
+                "thumb_L_h" $thumb_L.Height
+                "thumb_M" $thumb_M.RelPermalink
+                "thumb_M_w" $thumb_M.Width
+                "thumb_M_h" $thumb_M.Height
+                ))
+              }}
+            {{ else }}
+              {{ $thumb_XL := .Resize "500x center q100 picture webp" }}
+              {{ $thumb_L := .Resize "400x center q100 picture webp" }}
+              {{ $thumb_M := .Resize "300x center q100 picture webp" }}
+
+              {{ $images.Set "_type" $type }}
+              {{ $images.Set "_index" $index }}
+              {{ $images.Set "_ratio" $ratio }}
+              {{ $images.Set "_thumb_XL" $thumb_XL.RelPermalink }}
+              {{ $images.Set "_thumb_XL_w" $thumb_XL.Width }}
+              {{ $images.Set "_thumb_XL_h" $thumb_XL.Height }}
+              {{ $images.Set "_thumb_L" $thumb_L.RelPermalink }}
+              {{ $images.Set "_thumb_L_w" $thumb_L.Width }}
+              {{ $images.Set "_thumb_L_h" $thumb_L.Height }}
+              {{ $images.Set "_thumb_M" $thumb_M.RelPermalink }}
+              {{ $images.Set "_thumb_M_w" $thumb_M.Width }}
+              {{ $images.Set "_thumb_M_h" $thumb_M.Height }}
+
+              {{ $images.Set "thumb" (slice (dict
+                "type" $type
+                "index" $index
+                "ratio" $ratio
+                "thumb_XL" $thumb_XL.RelPermalink
+                "thumb_XL_w" $thumb_XL.Width
+                "thumb_XL_h" $thumb_XL.Height
+                "thumb_L" $thumb_L.RelPermalink
+                "thumb_L_w" $thumb_L.Width
+                "thumb_L_h" $thumb_L.Height
+                "thumb_M" $thumb_M.RelPermalink
+                "thumb_M_w" $thumb_M.Width
+                "thumb_M_h" $thumb_M.Height
+                ))
+              }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
