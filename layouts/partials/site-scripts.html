@@ -1,0 +1,25 @@
+{{/* For Users's overwrite */}}
+{{/* Libraries */}}
+<script src="/js/popper.min.js?v={{ now.Unix }}"></script>
+<script src="/js/tippy-bundle.umd.min.js?v={{ now.Unix }}"></script>
+
+{{/* Alpine Plugins */}}
+<script defer src="/js/collapse.min.js?v={{ now.Unix }}"></script>
+{{/* Alpine Core */}}
+<script defer src="/js/alpine.min.js?v={{ now.Unix }}"></script>
+{{ if eq .Page.Type "artwork" }}
+  <script src="/js/lazysizes.min.js?v={{ now.Unix }}"></script>
+{{ end }}
+
+
+<script>
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>

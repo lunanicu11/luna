@@ -1,5 +1,5 @@
 ---
-title: Biography
+title: contact
 ---
 
-## biography
+## contact

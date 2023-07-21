@@ -11,7 +11,7 @@ siteMap: true
 layout: artwork
 dimensions:
   height: 100
-  width: 150
+  width: 100
   thickness: 4
 images:
   - title: Main image

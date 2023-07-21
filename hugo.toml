@@ -1,10 +1,39 @@
 baseURL = "$HUGO_BASEURL"
 title = "Art website"
-disableKinds = ["page", "section", "taxonomy", "term"]
+# disableKinds = ["page", "section", "taxonomy", "term"]
+timeout = 60000
 
+# MENU --------------------------------
+# -------------------------------------
+[[menu.main]]
+identifier = "gallery"
+name = "Gallery"
+url = "/gallery/"
+weight = 1
+[[menu.main]]
+identifier = "bio"
+name = "Bio"
+url = "/biography/"
+weight = 2
+[[menu.main]]
+identifier = "exhibitions"
+name = "Exhibitions"
+url = "/exhibitions/"
+weight = 2
+[[menu.main]]
+identifier = "contact"
+name = "Contact"
+url = "/contact/"
+weight = 10
+pre = "hiddenMobile"
+post = "icons/envelope-heart.svg"
+
+# PARAMS ------------------------------
+# -------------------------------------
 [params]
 favicon = ""
 site_logo = ""
+theme = "xtheme-pink"
 # [outputs]
 # #gallery = ["html", "json"]
 # page = ["html", "json"]

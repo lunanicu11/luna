@@ -207,14 +207,14 @@ export default defineConfig({
 								name: 'type',
 								type: 'string',
 								description: 'Premium Member Only',
-								ui: {
-									// component: 'textarea',
-									validate: (value) => {
-										if (value !== 'basic') {
-											return 'This field si only for Premium Member, set to basic';
-										}
-									},
-								},
+								// ui: {
+								// 	// component: 'textarea',
+								// 	validate: (value) => {
+								// 		if (value !== 'basic') {
+								// 			return 'This field si only for Premium Member, set to basic';
+								// 		}
+								// 	},
+								// },
 
 								options: [
 									{

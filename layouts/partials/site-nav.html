@@ -1,3 +1,203 @@
-<nav>
-  nav
+<nav
+  x-data="scrollToReveal()"
+  x-ref="navbar"
+  x-on:scroll.window="scroll()"
+  x-bind:class="{
+		'sticky top-0': sticky,
+		'relative': !sticky
+	}"
+  x-init="scrollToReveal"
+  class="z-40 flex flex-wrap dark:text-skin-dark-grey11 text-skin-light-grey11 bg-skin-light-grey1 dark:bg-skin-dark-grey1 items-center justify-between w-full mb-2 transition-all duration-700 ease-in-out shadow-lg md:mb-3 navbar-expand-lg children ">
+  <div class="flex items-center justify-start pl-3">
+    {{ if .IsHome }}
+      <span class="block">
+        {{ partial "logo.html" . }}
+      </span>
+    {{ else }}
+      <a class="block" href="/">
+        <span class="sr-only">go to home</span>
+        {{ partial "logo.html" . }}
+      </a>
+    {{ end }}
+  </div>
+
+  <div>
+    <ul class="flex items-center justify-between text-sm xmr-5 ">
+      <!--li class="nav-item active">
+				<a class="nav-link" href="{{ .Site.BaseURL }}">Home <span class="sr-only">(current)</span></a>
+			</li-->
+
+      {{ $dev := 0 }}
+
+      {{ if .Site.IsServer }}
+        {{ if $dev }}
+          <li class="flex items-center h-full grow">
+            <a
+              href="/admin/"
+              class=" flex items-center md:gap-4
+					md:py-5 py-4 text-skin-light-brand5
+					border-y-4 px-[.7rem] h-full md:px-6 font-bold text-[1.02rem]
+					border-t-transparent
+					dark:border-t-transparent
+					dark:border-b-brand-d-7
+					border-b-brand-10
+					">
+              {{/* border-t-transparent
+                dark:border-t-transparent
+                border-b-transparent
+                dark:border-b-transparent
+              */}}
+
+              <span
+                class="h-auto min-h-[1.5rem] flex items-center justify-center"
+                >Admin</span
+              >
+            </a>
+          </li>
+        {{ end }}
+      {{ end }}
+
+      {{ $currentPage := .Permalink }}
+
+      {{ range .Site.Menus.main }}
+        {{ $url := .URL  | absLangURL }}
+
+
+        <li class="h-full grow">
+          <a
+            href="{{ .URL }}"
+            class=" flex items-center md:gap-1
+					md:py-5 py-4 text-skin-light-brand11 dark:text-skin-dark-brand12
+					border-y-4 px-[.7rem] h-full md:px-6 text-[.9rem]
+					{{ if eq $url $currentPage }}
+              border-t-transparent dark:border-t-transparent
+              dark:border-b-skin-dark-brand5 border-b-skin-light-brand6
+            {{ else }}
+              border-t-transparent dark:border-t-transparent
+              border-b-transparent dark:border-b-transparent
+            {{ end }}
+					">
+            {{ if .Pre }}
+              {{ if eq (print .Pre) "hiddenMobile" }}
+                <span
+                  class=" hidden h-auto sm:inline-flex min-h-[1.5rem] items-center justify-center "
+                  >{{ .Name }}</span
+                >
+              {{ end }}
+            {{ else }}
+              {{ if eq $url $currentPage }}
+                <span class="sr-only">(current)</span>
+              {{ end }}
+              <span
+                class=" h-auto min-h-[1.5rem] flex items-center justify-center "
+                >{{ .Name }}</span
+              >
+            {{ end }}
+
+            {{ if .Post }}
+              {{ $icon := string .Post }}
+              <span
+                class="[&>*]:w-6 [&>*]:h-auto min-w-[1.8rem] md:min-w-[initial] h-auto dark:text-brand-d-10 md:dark:text-brand-d-10 text-brand-10 min-h-[1.5rem] flex items-center justify-center">
+                {{ partial $icon . }}
+              </span>
+            {{ end }}
+          </a>
+        </li>
+      {{ end }}
+
+      {{ if .Site.Params.snipcart }}
+        <li class="h-full grow">
+          <a
+            href="#"
+            class="snipcart-checkout  flex items-center md:gap-1
+        md:py-5 py-4 text-brand-10 dark:text-brand-d-11
+        border-y-4 px-[.7rem] h-full md:px-6 text-[.9rem]
+        
+              border-t-transparent dark:border-t-transparent
+              border-b-transparent dark:border-b-transparent
+              
+              "
+            style="text-decoration: none;">
+            <div class="snipcart-summary flex gap-2">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  fill="currentColor"
+                  class="dark:text-brand-d-10 md:dark:text-brand-d-10 text-brand-10"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                </svg>
+              </span>
+              <span class="snipcart-total-price"></span>
+            </div>
+          </a>
+        </li>
+        <li class="h-full grow">
+          <button
+            class="snipcart-customer-signin  flex items-center md:gap-1
+					md:py-5 py-4 text-brand-10 dark:text-brand-d-11
+					border-y-4 px-[.7rem] h-full md:px-6 text-[.9rem]
+					
+          border-t-transparent dark:border-t-transparent
+          border-b-transparent dark:border-b-transparent
+          
+          ">
+            My account
+          </button>
+        </li>
+      {{ end }}
+
+
+      <li
+        class="flex items-center h-full grow"
+        x-data="{ theme: localStorage.theme }">
+        <button
+          class="flex min-w-[3rem] justify-center px-4 py-4 md:py-5 md:px-6 h-auto min-h-[1.5rem]"
+          x-data="{
+					toggle: () => {
+						if (localStorage.theme === 'dark') {
+						localStorage.theme = 'light';
+						document.documentElement.classList.remove('dark');
+						} else {
+						localStorage.theme = 'dark';
+						document.documentElement.classList.add('dark');
+						}
+					},
+					}"
+          @click="toggle">
+          <span class="sr-only">switch theme</span>
+          <div class="hidden dark:block">
+            <span
+              class=" dark:text-yellow-500 h-auto min-h-[1.5rem] flex items-center justify-center">
+              {{ partial "icons/moon-stars-fill.svg" . }}
+            </span>
+          </div>
+          <div class="block dark:hidden">
+            <span
+              class="text-brand-9 h-auto min-h-[1.5rem] flex items-center justify-center">
+              {{ partial "icons/sun-fill.svg" . }}
+            </span>
+          </div>
+        </button>
+      </li>
+    </ul>
+  </div>
 </nav>
+
+<script>
+  function scrollToReveal() {
+    return {
+      sticky: false,
+      lastPos: window.scrollY + 0,
+      scroll() {
+        this.sticky =
+          window.scrollY > this.$refs.navbar.offsetHeight &&
+          this.lastPos > window.scrollY;
+        this.lastPos = window.scrollY;
+      },
+    };
+  }
+</script>

@@ -1,0 +1,89 @@
+@layer base {
+  .theme-red {
+    /* grey */
+    --light-grey1: 252, 252, 252;
+    --light-grey2: 248, 248, 248;
+    --light-grey3: 243, 243, 243;
+    --light-grey4: 237, 237, 237;
+    --light-grey5: 232, 232, 232;
+    --light-grey6: 226, 226, 226;
+    --light-grey7: 219, 219, 219;
+    --light-grey8: 199, 199, 199;
+    --light-grey9: 143, 143, 143;
+    --light-grey10: 133, 133, 133;
+    --light-grey11: 111, 111, 111;
+    --light-grey12: 23, 23, 23;
+
+    --dark-grey1: 22, 22, 22;
+    --dark-grey2: 28, 28, 28;
+    --dark-grey3: 35, 35, 35;
+    --dark-grey4: 40, 40, 40;
+    --dark-grey5: 46, 46, 46;
+    --dark-grey6: 52, 52, 52;
+    --dark-grey7: 62, 62, 62;
+    --dark-grey8: 80, 80, 80;
+    --dark-grey9: 112, 112, 112;
+    --dark-grey10: 126, 126, 126;
+    --dark-grey11: 160, 160, 160;
+    --dark-grey12: 237, 237, 237;
+    /* end grey */
+
+    /* red */
+
+    --light-brand1: 255, 252, 252;
+    --light-brand2: 255, 248, 248;
+    --light-brand3: 255, 239, 239;
+    --light-brand4: 255, 229, 229;
+    --light-brand5: 253, 216, 216;
+    --light-brand6: 249, 198, 198;
+    --light-brand7: 243, 174, 175;
+    --light-brand8: 235, 144, 145;
+    --light-brand9: 229, 72, 77;
+    --light-brand10: 220, 61, 67;
+    --light-brand11: 205, 43, 49;
+    --light-brand12: 56, 19, 22;
+
+    --dark-brand1: 31, 19, 21;
+    --dark-brand2: 41, 20, 21;
+    --dark-brand3: 60, 24, 26;
+    --dark-brand4: 72, 26, 29;
+    --dark-brand5: 84, 27, 31;
+    --dark-brand6: 103, 30, 34;
+    --dark-brand7: 130, 32, 37;
+    --dark-brand8: 170, 36, 41;
+    --dark-brand9: 229, 72, 77;
+    --dark-brand10: 242, 85, 90;
+    --dark-brand11: 255, 99, 105;
+    --dark-brand12: 254, 236, 238;
+
+    /* end red */
+
+    /* grass */
+    --light-cta1: 251, 254, 251;
+    --light-cta2: 243, 252, 243;
+    --light-cta3: 235, 249, 235;
+    --light-cta4: 223, 243, 223;
+    --light-cta5: 206, 235, 207;
+    --light-cta6: 183, 223, 186;
+    --light-cta7: 151, 207, 156;
+    --light-cta8: 101, 186, 117;
+    --light-cta9: 70, 167, 88;
+    --light-cta10: 61, 154, 80;
+    --light-cta11: 41, 124, 59;
+    --light-cta12: 27, 49, 30;
+
+    --dark-cta1: 13, 25, 18;
+    --dark-cta2: 15, 30, 19;
+    --dark-cta3: 19, 40, 25;
+    --dark-cta4: 22, 48, 29;
+    --dark-cta5: 25, 57, 33;
+    --dark-cta6: 29, 68, 39;
+    --dark-cta7: 36, 85, 48;
+    --dark-cta8: 47, 110, 59;
+    --dark-cta9: 70, 167, 88;
+    --dark-cta10: 85, 180, 103;
+    --dark-cta11: 99, 193, 116;
+    --dark-cta12: 229, 251, 235;
+    /* end grass */
+  }
+}
