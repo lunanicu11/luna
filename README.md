@@ -49,3 +49,7 @@ You need to add this to your `hugo.toml`:
 ```
 
 Then run your project as usual.
+
+## Pretier
+
+- works with v9.18.0
