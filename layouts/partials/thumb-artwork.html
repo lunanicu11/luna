@@ -1,0 +1,127 @@
+{{ $dev := 0 | default $.Site.Params.dev }}
+
+<li
+class="listing-item w-full md:w-auto mx-4 md:mx-[initial] flex flex-col justify-between max-w-[20rem] p-2 mb-6 duration-500 ease-in-out bg-white rounded-sm hover:shadow-myShadow-hover shadow-myShadow dark:bg-neutralDark-3">
+<div>
+  {{/* {{ $source := "" }}
+  {{ with index .Params.images 0 }}
+    {{ $source = strings.TrimPrefix "/uploads/" .asset }}
+    <img src="{{ .asset }}" alt="{{ .title }}" />
+  {{ end }}
+
+  */}}
+  {{ partial "scratching/images.html" . }}
+
+  {{ $sourceM := .Scratch.Get "_thumb_M" }}
+  {{ $sourceL := .Scratch.Get "_thumb_L" }}
+  {{ $sourceXL := .Scratch.Get "_thumb_XL" }}
+
+  {{ $sourceMWidth := .Scratch.Get "_thumb_M_w" }}
+  {{ $sourceMHeight := .Scratch.Get "_thumb_M_h" }}
+
+
+  <img
+    draggable="false"
+    class="w-full rounded-sm"
+    src="{{ $sourceM }}"
+    srcset="
+      {{ $sourceM }} 303w,
+      {{ $sourceL }} 429w,
+      {{ $sourceXL }} 605w
+    "
+    sizes="(min-width: 768px) 288px, calc(50vw - 36px)"
+    loading="lazy"
+    width="{{ $sourceMWidth }}"
+    height="{{ $sourceMHeight }}"
+    fetchpriority="high" />
+
+  {{ if $dev }}
+    <div class="border p-1">
+      M
+      <img src="{{ $sourceM }}" />
+    </div>
+    <div class="border p-1">
+      L
+      <img src="{{ $sourceL }}" />
+    </div>
+    <div class="border p-1">
+      XL
+      <img src="{{ $sourceXL }}" />
+    </div>
+
+    {{/*  */}}
+    <hr />
+    _thumbSrc:
+    {{ .Scratch.Get "_thumbSrc" }}
+    <hr />
+    _ratio:
+    {{ .Scratch.Get "_ratio" }}
+    <hr />
+    _ctx:
+    {{ .Scratch.Get "_ctx" }}
+    <hr />
+    _color:
+    {{ $colors := .Scratch.Get "_color" }}
+    <div class="flex">
+      {{ range $colors }}
+        <div
+          class="w-8 h-8"
+          style="background: {{ safeCSS  . }};"></div>
+      {{ end }}
+    </div>
+    <hr />
+    _thumb_XL_w:
+    {{ .Scratch.Get "_thumb_XL_w" }}
+    <hr />
+
+    _thumb_XL_h:
+    {{ .Scratch.Get "_thumb_XL_h" }}
+    <hr />
+
+    _thumb_L:
+    {{ .Scratch.Get "_thumb_L" }}
+    <hr />
+
+    _thumb_L_w:
+    {{ .Scratch.Get "_thumb_L_w" }}
+    <hr />
+
+    _thumb_L_h:
+    {{ .Scratch.Get "_thumb_L_h" }}
+    <hr />
+
+    _thumb_M:
+    {{ .Scratch.Get "_thumb_M" }}
+    <hr />
+
+    _thumb_M_w:
+    {{ .Scratch.Get "_thumb_M_w" }}
+    <hr />
+
+    _thumb_M_h:
+    {{ .Scratch.Get "_thumb_M_h" }}
+    <hr />
+  {{ end }}
+</div>
+<div class="flex flex-col w-full gap-2 pt-4">
+  <a class="artworkLink mainLink" href="{{ .Permalink }}"
+    ><h2
+      class="py-0 my-0 font-serif text-lg text-brand-9 dark:text-brandDark-10"
+      >
+      {{ .Title }}
+    </h2></a
+  >
+  <div class="flex items-baseline justify-between">
+    <small class="text-neutral-11 dark:text-neutralDark-11"
+      ><span>{{ .Params.dimensions.width }}</span>
+      <abbr class="no-underline" title="width">W</abbr> x
+      <span>{{ .Params.dimensions.height }}</span>
+      <abbr class="no-underline" title="Height">H</abbr> (<abbr
+        class="no-underline"
+        title="centimetres"
+        >cm</abbr
+      >)</small
+    >
+  </div>
+</div>
+</li>

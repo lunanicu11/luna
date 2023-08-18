@@ -53,3 +53,10 @@ Then run your project as usual.
 ## Pretier
 
 - works with v9.18.0
+
+
+## Thanks to:
+
+- [Bep - for - hugo starter tailwind basic](https://github.com/bep/hugo-starter-tailwind-basic) 
+- [Piccalil - for - creating a full bleed css utility](https://piccalil.li/tutorial/creating-a-full-bleed-css-utility/) 
+- [pqvst.com - for - extract google form fields](https://pqvst.com/tools/extract-google-form-fields/) 

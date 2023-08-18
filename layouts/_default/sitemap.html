@@ -1,0 +1,167 @@
+{{ define "main" }}
+  <div class="container mx-auto px-4">
+    <section class="{{ .Site.Params.Prose }}">
+      <div class="py-4 flex gap-3">
+        <div class="flex flex-col gap-4">
+          <small> Accent </small>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "accent" "label" "Open") }}
+          </div>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "accent" "label" "Open" "size" "sm") }}
+          </div>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "accent" "label" "Open" "size" "xs") }}
+          </div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <small> Solid </small>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "solid" "label" "Open") }}
+          </div>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "solid" "label" "Open" "size" "sm") }}
+          </div>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "solid" "label" "Open" "size" "xs") }}
+          </div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <small> Soft </small>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "soft" "label" "Open") }}
+          </div>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "soft" "label" "Open" "size" "sm") }}
+          </div>
+          <div>
+            {{ partial "molecules/cta" (dict "ctx" . "type" "button" "color" "soft" "label" "Open" "size" "xs") }}
+          </div>
+        </div>
+      </div>
+
+      <ul>
+        {{ range $.Site.Taxonomies.artworks }}
+          <li><a href="{{ .Page.RelPermalink }}">{{ . }}</a></li>
+        {{ end }}
+      </ul>
+
+      <table class="list-decimal pl-10">
+        {{ range .Site.Pages }}
+          <tr>
+            <td>
+              <a
+                href="{{ .Permalink }}"
+                class="text-neutral-9 dark:text-neutralDark-9">
+                {{ if .Title }}
+                  {{ .Title }}
+                {{ else }}
+                  no tile
+                {{ end }}
+              </a>
+            </td>
+            <td>
+              {{ .Type }}
+            </td>
+            <td>
+              {{ .Kind }}
+            </td>
+          </tr>
+        {{ end }}
+      </table>
+      <hr />
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3>
+      <h4>Heading 4</h4>
+      <h5>Heading 5</h5>
+      <h6>Heading 6</h6>
+      <hr />
+      <ul>
+        <li>item</li>
+        <li>item</li>
+        <li>...</li>
+      </ul>
+      <ol>
+        <li>item</li>
+        <li>item</li>
+        <li>...</li>
+      </ol>
+      <hr />
+      <blockquote>
+        <strong> Lorem blockquote, </strong>, ipsum dolor sit amet consectetur
+        adipisicing elit. Incidunt
+      </blockquote>
+      <hr />
+      <p class="lead">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+        architecto explicabo sit optio aliquam totam et, eos nam? Officia beatae
+        tempora aliquid placeat odit in laudantium,
+        <a href="#"> sint accusamus ab nam. </a>
+      </p>
+      <p>
+        <strong> Lorem, </strong>
+        ipsum dolor sit amet consectetur adipisicing elit. Incidunt architecto
+        explicabo sit optio aliquam totam et, eos nam? Officia beatae tempora
+        aliquid placeat odit in laudantium,
+        <a href="#"> sint accusamus ab nam. </a>
+      </p>
+      <hr />
+      <table>
+        <thead class="h-[2.8rem]">
+          <tr class="bg-white dark:bg-brandDark-1 ">
+            <th
+              class="w-[3rem] text-center text-brand-12 font-bold dark:text-brandDark-12"></th>
+            <th>Th 1</th>
+            <th>Th 2</th>
+            <th>Th 3</th>
+            <th>Th 4</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-brand-3 dark:border-brandDark-3">
+            <td
+              class="w-[3rem] text-center text-brand-12 font-bold dark:text-brandDark-12">
+              1
+            </td>
+            <td>td 1</td>
+            <td>td 2</td>
+            <td>td 3</td>
+            <td>td 3</td>
+          </tr>
+          <tr class="border-b border-brand-3 dark:border-brandDark-3">
+            <td
+              class="w-[3rem] text-center text-brand-12 font-bold dark:text-brandDark-12">
+              2
+            </td>
+            <td>td 1</td>
+            <td>td 2</td>
+            <td>td 3</td>
+            <td>td 3</td>
+          </tr>
+          <tr class="border-b border-brand-3 dark:border-brandDark-3">
+            <td
+              class="w-[3rem] text-center text-brand-12 font-bold dark:text-brandDark-12">
+              3
+            </td>
+            <td>td 1</td>
+            <td>td 2</td>
+            <td>td 3</td>
+            <td>td 3</td>
+          </tr>
+          <tr class="border-b border-brand-3 dark:border-brandDark-3">
+            <td
+              class="w-[3rem] text-center text-brand-12 font-bold dark:text-brandDark-12">
+              4
+            </td>
+            <td>td 1</td>
+            <td>td 2</td>
+            <td>td 3</td>
+            <td>td 3</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+    </section>
+  </div>
+{{ end }}

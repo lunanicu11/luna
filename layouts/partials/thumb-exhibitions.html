@@ -1,0 +1,71 @@
+{{ $ctx := .ctx }}
+{{ $type := .type }}
+{{ $link := $ctx.Permalink }}
+
+{{ $liClasses := ""}}
+{{ $center := ""}}
+{{ $dateClass := ""}}
+{{ if ne $type "plain" }}
+{{ $liClasses = "bg-white border rounded dark:rounded dark:bg-neutralDark-3/50 duration-500 ease-in-out  border-neutral-3/80 dark:border-neutralDark-3/50 hover:shadow-myShadow-hover shadow-myShadow"}}
+{{ else }}
+{{ $dateClass := "justify-center"}}
+{{ $center = "justify-center text-center" }}
+{{ end }}
+
+<li class="flex p-0 ">
+  <div
+    class="{{ $liClasses }} {{ $center }} mb-3 flex flex-col justify-between w-full p-4 items-start">
+    <div class="flex w-full {{ $center }}">
+      <span
+        class="text-neutral-9 dark:text-neutralDark-9 text-sm ">
+        {{ with $ctx.Params.startDate }}
+          {{ . | dateFormat "Jan 2" }}
+        {{ end }}
+        {{ if .Site.Params.exhibitionEndDate }}
+          {{ with $ctx.Params.endDate }}
+            -
+            {{ . | dateFormat "Jan 2" }}
+          {{ end }}
+        {{ end }}
+      </span>
+      {{ with $ctx.Params.eventCategory }}
+        <span
+          class="text-neutral-12 dark:text-neutralDark-10 text-sm pl-2">
+          ({{ . }})
+        </span>
+      {{ end }}
+    </div>
+    <a
+      href="{{ $ctx.Permalink }}"
+      class="z-40 block mb-4 text-brand-9 grow no-underline w-full">
+      <h3
+        class="flex flex-col font-bold text-2xl dark:text-brandDark-9 text-brand-9 font-serif py-2 h-full">
+        <span class="grow">
+          {{ $ctx.Title }}
+        </span>
+
+        {{ with $ctx.Params.sub_title }}
+          <span
+            class="font-sans {{ $center }} mt-3 pt-3 border-t border-brand-5 dark:border-brandDark-5 flex items-end text-base leading-tight text-neutral-11 dark:text-neutralDark-11">
+            {{ . }}
+          </span>
+        {{ end }}
+      </h3>
+    </a>
+    {{ if .Site.Params.organizedBy }}
+      <p class="text-neutral-9 dark:text-neutralDark-9">
+        {{ with $ctx.Params.org }}
+          <span>
+            organized by
+            <i class="text-neutral-10 dark:text-neutralDark-10">
+              {{ . }}
+            </i>
+          </span>
+        {{ end }}
+      </p>
+    {{ end }}
+    <div class="flex w-full {{ $center }}">
+      {{ partial "molecules/cta" (dict "ctx" . "type" $link "color" "ghost" "label" "Read more ..." "size" "sm") }}
+    </div>
+  </div>
+</li>

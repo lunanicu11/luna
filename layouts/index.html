@@ -1,3 +1,30 @@
 {{ define "main" }}
-<h1 class="text-red-500 text-9xl font-bold">Index</h1>
+  <section class="max-w-[80rem] mx-auto py-4 {{ .Site.Params.Prose }}">
+    {{ .Content }}
+  </section>
+
+  <main class="block p-0 my-0 mx-auto max-w-[80vw]" role="main">
+    <section class="py-2">
+      <ul class="flex flex-wrap justify-center gap-2 mx-auto md:gap-8">
+        {{ range .Site.Taxonomies.artworks.home.Pages }}
+          {{ partial "thumb-artwork.html" . }}
+        {{ end }}
+      </ul>
+    </section>
+    <section class="full-bleed flex flex-col pt-8 pb-10 dark:bg-black/10 bg-white border-t border-b border-neutral-3 dark:border-neutralDark-2 "> 
+      <div class="max-w-[90rem]">
+        <div class="{{ .Site.Params.Prose }} pt-6 pb-8 text-center w-full max-w-none">
+          <h2 class="text-5xl font-normal text-brand-7 dark:text-brandDark-7">My Recent events</h2>
+        </div>
+        <ul class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-8">
+          {{ range first 3 (where site.RegularPages "Type" "in" "exhibitions" ) }}
+            {{ partial "thumb-exhibitions.html" (dict "ctx" . "type" "plain") }}
+          {{ end }}
+        </ul>
+        <div class="flex justify-center">
+          {{ partial "molecules/cta" (dict "ctx" . "type" "/exhibitions/" "color" "solid" "label" "View all events" "size" "xl") }}
+        </div>
+      </div>
+    </section>
+  </main>
 {{ end }}

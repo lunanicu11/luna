@@ -3,12 +3,20 @@ title = "Art website"
 # disableKinds = ["page", "section", "taxonomy", "term"]
 timeout = 60000
 
+paginate = 600
+
+[taxonomies]
+artwork = "artworks"
+theme = "themes"
+size = "sizes"
+year = "years"
+
 # MENU --------------------------------
 # -------------------------------------
 [[menu.main]]
 identifier = "gallery"
 name = "Gallery"
-url = "/gallery/"
+url = "/artworks/gallery/"
 weight = 1
 [[menu.main]]
 identifier = "bio"
@@ -28,12 +36,54 @@ weight = 10
 pre = "hiddenMobile"
 post = "icons/envelope-heart.svg"
 
+
+# SHORTCOES ---------------------------
+# -------------------------------------
+[markup.goldmark.renderer]
+unsafe = true
 # PARAMS ------------------------------
 # -------------------------------------
 [params]
+name = "Mano Sebastiano Argenti"
+dev = 0
 favicon = ""
 site_logo = ""
 theme = "xtheme-pink"
+exhibitionEndDate = false
+organizedBy = false
+prose = "prose prose-brand dark:prose-invert prose-h1:font-serif prose-h1:font-normal prose-h2:font-serif prose-h3:font-serif prose-h4:font-serif prose-h5:font-bold prose-thead:font-bold prose-thead:font-serif"
+
+# Studio MAP --------------------------
+# -------------------------------------
+map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2487.6608083246297!2d-0.9244227838771734!3d51.427657179621995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487685ea685a7425%3A0x860b296ac5d34ee!2sArtist+Calina+Lefter!5e0!3m2!1sen!2suk!4v1529055792412"
+
+# FORM TEST ---------------------------
+# -------------------------------------
+action = "https://docs.google.com/forms/d/e/1FAIpQLSf0lsbqQyqDrQvc91fhwvYTaEcUwCo4b1IvyL4soXCsqWvZeA/formResponse" #Google form
+fullName = "entry.56747525"
+city = "entry.1296023716"
+zip = "entry.1213787509"
+country = "entry.1469085403"
+message = "entry.1214340196"
+source = "entry.1370247914"
+price = "entry.672303994"
+stock = "entry.1773149955"
+recaptcha = "6LcWTlwlAAAAAOZcPd0EjYokFxcTzrH3eGoQjbnH"
+
+# FORM LIVE ---------------------------
+# -------------------------------------
+_action = "formResponse"                                #Google form
+_fullName = "entry.1234567890"
+_city = "entry.1234567890"
+_zip = "entry.1234567890"
+_country = "entry.1234567890"
+_message = "entry.1234567890"
+_source = "entry.1234567890"
+_price = "entry.1234567890"
+_stock = "entry.1234567890"
+_recaptcha = "6LcWTlwlAAAAAOZcPd0EjYokFxcTzrH3eGoQjbnH"
+
+
 # [outputs]
 # #gallery = ["html", "json"]
 # page = ["html", "json"]
@@ -41,27 +91,27 @@ theme = "xtheme-pink"
 # single = ["html", "json"]
 
 [module]
-  [module.hugoVersion]
-    extended = false
-    min      = "0.112.0"
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
-  [[module.mounts]]
-    source = "hugo_stats.json"
-    target = "assets/watching/hugo_stats.json"
+[module.hugoVersion]
+extended = false
+min = "0.112.0"
+[[module.mounts]]
+source = "assets"
+target = "assets"
+[[module.mounts]]
+source = "hugo_stats.json"
+target = "assets/watching/hugo_stats.json"
 
 [build]
-  writeStats = true
-  [[build.cachebusters]]
-    source = "assets/watching/hugo_stats\\.json"
-    target = "styles\\.css"
-  [[build.cachebusters]]
-    source = "(postcss|tailwind)\\.config\\.js"
-    target = "css"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(js|ts|jsx|tsx)"
-    target = "js"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(.*)$"
-    target = "$1"
+writeStats = true
+[[build.cachebusters]]
+source = "assets/watching/hugo_stats\\.json"
+target = "styles\\.css"
+[[build.cachebusters]]
+source = "(postcss|tailwind)\\.config\\.js"
+target = "css"
+[[build.cachebusters]]
+source = "assets/.*\\.(js|ts|jsx|tsx)"
+target = "js"
+[[build.cachebusters]]
+source = "assets/.*\\.(.*)$"
+target = "$1"

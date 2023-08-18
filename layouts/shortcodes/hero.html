@@ -1,0 +1,68 @@
+{{ $prose := $.Site.Params.Prose }}
+{{ $title := $.Get "title" }}
+{{ $asset := $.Get "asset" }}
+{{ $side := $.Get "side" }}
+
+{{ $imageLeftCLass := "" }}
+{{ $imageRightCLass := "" }}
+
+{{ if eq $side "left"}}
+{{ $imageLeftCLass = "md:order-last" }}
+{{ end }}
+
+{{ if eq $side "right"}}
+{{ $imageRightCLass = "md:order-last" }}
+{{ end }}
+
+
+<div class="full-bleed bg-gradient-to-l from-brand-12/10 dark:from-black/50">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+<div
+class="flex justify-center  lg:justify-end items-center py-6 md:py-2 {{ $imageRightCLass}} "
+>
+<section class="{{ $prose }} py-6 px-4 md:p-8 lg:mr-20 md:min-w-[30rem]">
+{{ with $title }}
+<h1>{{ . }}</h1>
+{{ end }}
+{{ .Inner | markdownify }}
+</section>
+{{/*
+*/}}
+</div>
+<div class="{{ $imageLeftCLass }} h-full flex justify-center items-center">
+<section class=" flex justify-center items-center">
+{{- if ne $asset  "" -}}
+{{- $sourceItem := strings.TrimPrefix "/uploads/" $asset -}}
+{{- range $.Site.Pages -}}
+{{- with .Resources.Match $sourceItem -}}
+{{- range . -}}
+{{- $asset_XL := .Resize "1052x center q100 picture webp" -}}
+{{- $asset_L := .Resize "800x center q100 picture webp" -}}
+{{- $asset_M := .Resize "600x center q100 picture webp" -}}
+{{- $linkAsset_XL := $asset_XL.RelPermalink -}}
+{{- $linkAsset_L := $asset_L.RelPermalink -}}
+{{- $linkAsset_M := $asset_M.RelPermalink -}}
+{{- $width := $asset_XL.Width -}}
+{{- $height := $asset_XL.Height -}}
+<img
+draggable="false"
+alt="{{ $title }}"
+class="h-full w-full md:w-auto "
+src="{{ $asset_M }}"
+srcset="
+{{ $linkAsset_M }} 303w,
+{{ $linkAsset_L }}  429w,
+{{ $linkAsset_XL }} 605w
+"
+sizes="(min-width: 768px) 288px, calc(50vw - 36px)"
+loading="eager"
+width="{{ $width }}"
+height="{{ $height }}" />
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+</section>
+</div>
+</div>
+</div>

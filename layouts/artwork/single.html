@@ -1,100 +1,110 @@
 {{ define "main" }}
-  {{/*  {{ range .Params.images }}
-    {{ .type }}
-    {{ .asset }}
-  {{ end }}  */}}
 
-  {{- partial "scratching/images.html" . -}}
-  {{- $color := $.Scratch.Get "color" -}}
-  {{- $ratio := $.Scratch.Get "ratio" -}}
-  <hr />
-  color:
-  {{ $color }}
-  <hr />
-  <hr />
-  ratio:
-  {{ $ratio }}
-  <hr />
-  {{/* {{ $images := $.Scratch }}
-
-  {{- $images.Set "slider" slice -}}
-  {{- $images.Set "thumb" slice -}}
-  {{- $images.Set "assets" slice -}}
-  {{- $images.Set "color" "nothing" -}}
-
-  {{- $images.Set "_type" "nothing" -}}
-  {{- $images.Set "_index" "nothing" -}}
-  {{- $images.Set "_ratio" "nothing" -}}
-  {{- $images.Set "_thumb_XL" "nothing" -}}
-  {{- $images.Set "_thumb_XL_w" "nothing" -}}
-  {{- $images.Set "_thumb_XL_h" "nothing" -}}
-  {{- $images.Set "_thumb_L" "nothing" -}}
-  {{- $images.Set "_thumb_L_w" "nothing" -}}
-  {{- $images.Set "_thumb_L_h" "nothing" -}}
-  {{- $images.Set "_thumb_M" "nothing" -}}
-  {{- $images.Set "_thumb_M_w" "nothing" -}}
-  {{- $images.Set "_thumb_M_h" "nothing" -}}
-
-  {{ if .Params.images }}
-    {{ $imagesList := .Params.images }}
-    {{ range $index, $img := $imagesList }}
-      {{ $sourceItem := strings.TrimPrefix "/uploads/" $img.asset }}
-      {{ $type := $img.type }}
-      {{ $description := $img.description }}
-
-      {{ $sourceItem }}
-      {{ range $.Site.Pages }}
-        {{ with .Resources.Match $sourceItem }}
-          {{ range . }}
-            {{ if eq $type "full" }}
-              <hr />
-              {{ $images.Set "color" (.Fill "1x1 q100 picture webp").Colors }}
-
-              {{ $thumb_XL := .Resize "500x center q100 picture webp" }}
-              {{ $thumb_L := .Resize "400x center q100 picture webp" }}
-              {{ $thumb_M := .Resize "300x center q100 picture webp" }}
-
-              {{ $images.Set "_type" $type }}
-              {{ $images.Set "_index" $index }}
-              {{ $images.Set "_thumb_XL" $thumb_XL.RelPermalink }}
-              {{ $images.Set "_thumb_XL_w" $thumb_XL.Width }}
-              {{ $images.Set "_thumb_XL_h" $thumb_XL.Height }}
-              {{ $images.Set "_thumb_L" $thumb_L.RelPermalink }}
-              {{ $images.Set "_thumb_L_w" $thumb_L.Width }}
-              {{ $images.Set "_thumb_L_h" $thumb_L.Height }}
-              {{ $images.Set "_thumb_M" $thumb_M.RelPermalink }}
-              {{ $images.Set "_thumb_M_w" $thumb_M.Width }}
-              {{ $images.Set "_thumb_M_h" $thumb_M.Height }}
-
-              {{ $images.Set "thumb" (slice (dict
-                "type" $type
-                "index" $index
-                "thumb_XL" $thumb_XL.RelPermalink
-                "thumb_XL_w" $thumb_XL.Width
-                "thumb_XL_h" $thumb_XL.Height
-                "thumb_L" $thumb_L.RelPermalink
-                "thumb_L_w" $thumb_L.Width
-                "thumb_L_h" $thumb_L.Height
-                "thumb_M" $thumb_M.RelPermalink
-                "thumb_M_w" $thumb_M.Width
-                "thumb_M_h" $thumb_M.Height
-                ))
-              }}
-            {{ end }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
+<div class="mx-auto md:max-w-[1600px] grid grid-cols-[1fr] md:grid-cols-[auto_minmax(30rem,_.4fr)] mb-10 md:px-3">
+  <div class="self-stretch
+  md:before:rounded-md relative mb-4 md:py-3 before:opacity-[.3] md:before:opacity-[.1] before:z-[-1] before:bg-[var(--bg)] before:inset-0 before:absolute before:block before:content-['']">
+    <div class="flex items-center justify-center w-full px-3 pt-4 pb-3 md:px-0 md:pb-0 md:pt-0 min-h-[50vh]">
+      image
+    </div>
+  </div>
+  <div class="px-2 md:py-6 md:px-4 max-w-[30rem]">
+    <h1 class="text-brand-9 dark:text-brand-9 text-3xl font-serif">
+      {{ .Title }} | 
+      <small>artwork by {{ .Site.Params.name }} {{ with .Params.years }}- {{ . }}{{ end }}</small>
+    </h1>
+    {{ with .Params.techniqueUsed }}
+      <p class="mt-6 font-serif text-white dark:text-neutralDark-11">{{ . }}</p>
     {{ end }}
-  {{ end }}
+    <p class="font-serif text-white dark:text-neutralDark-11">
+      {{ with .Params.dimensions.width  }}
+      {{ . }}w
+      {{ end }}
+      {{ with .Params.dimensions.height  }}
+      x
+      {{ . }}h
+      {{ end }}
+      {{ with .Params.dimensions.thickness  }}
+      x
+      {{ . }}h
+      {{ end }}
+    </p>
+    {{ with .Params.dimensions.dimensionDescription  }}
+    <p class="italic dark:text-neutralDark-9 text-neutral-9 ">
+      ({{ . }})
+    </p>
+    {{ end }}
+    <div class="bg-accent-3 dark:bg-accentDark-3/50 my-6 p-4 rounded-xl flex flex-col gap-4 justify-center">
+      <small>
+        {{ partial "id-to-clipboard.html"  ( dict "ctx" . "type" "artwork id" ) }}
+      </small>
 
-  {{- $colors := .Scratch.Get "colors" -}}
+      {{ partial "molecules/cta" (dict "ctx" . "type" "button" "click" "pullOut = true, bodyOverlay = false" "color" "accent" "label" "Make a offer" "size" "lg") }}
+
+      
+      {{ $source := .File | urlize }}
+      {{ $string := "?source=" }}
+      {{ $urlWithSource := printf "%s%s" $string  $source }}
 
 
-  <ul class="list-disc">
-    <li>
-      colors:
-      {{ $images.Get "color" }}
-    </li>
-  </ul>
-  */}}
+      <template x-teleport="body">
+        <template x-if="pullOut">
+          <div
+            x-bind:style="'height: ' + windowHeight + 'px;'"
+            class="fixed top-0 bottom-0 right-0 left-auto z-[51] block w-full h-screen min-h-screen overflow-hidden md:w-1/2 bg-neutral-50"
+          >
+          <div 
+          x-bind:style="'height: ' + windowHeight + 'px;'"
+          class="flex flex-col w-full bg-neutral-1 dark:bg-neutralDark-1 text-neutral-12 dark:text-neutral-d-12" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="flex justify-between px-4 py-3 bg-neutral-5 dark:bg-black">
+                <h5 class="modal-title font-serif text-brand-10 dark:text-brandDark-10" id="exampleModalLabel">
+                  {{ .Title }}
+                </h5>
+                <button type="button" class="text-brand-9 dark:text-brandDark-9" @click="pullOut = false, bodyOverlay = false" aria-label="Close">
+                    <span aria-hidden="true">
+                        {{ partial "icons/x-lg.svg" . }}
+                      </span>
+                    </button>
+                  </div>
+                  <div class="w-full h-full grow">                    
+                    <iframe src="{{ .Site.BaseURL }}form/{{ $urlWithSource }}&price={{ .Params.store_info.price }}&stock={{ .Params.instock }}" frameborder="0" width="100%" height="100%"></iframe>
+                  </div>
+                </div>
+              </template>
+            </template>
+      <template x-teleport="body">
+        <template x-if="pullOut">
+          <div
+          x-bind:style="'height: ' + windowHeight + 'px;'"
+          @click="bodyOverlay = true, pullOut = false"
+          class="absolute inset-0 z-50 block w-full h-screen min-h-screen bg-white/20 dark:bg-black/20 backdrop-brightness-50 backdrop-blur"
+          ></div>
+        </template>
+      </template>
+
+    </div>
+
+  </div>
+</div>
+<main class="block p-0 my-0 mx-auto max-w-[70rem]">
+
+  <section class="{{ .Site.Params.Prose }} block p-0 my-0 mx-auto max-w-[70rem]">
+    {{ .Content }}
+  </section>
+</main>
+
+<div class="grid grid-cols-2 gap-3 py-4">
+  <div class="flex justify-end">
+    {{ with .PrevInSection }}
+    {{ $link := .Permalink }}
+    {{ partial "molecules/cta" (dict "ctx" . "type" $link "color" "soft" "label" "Previous" "size" "lg") }}  
+    {{ end }}
+  </div>
+  <div class="flex justify-start">
+    {{ with .NextInSection }}
+      {{ $link := .Permalink }}
+      {{ partial "molecules/cta" (dict "ctx" . "type" $link "color" "soft" "label" "Next" "size" "lg") }}
+    {{ end }}
+  </div>
+</div>
+  
 {{ end }}
