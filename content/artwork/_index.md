@@ -3,4 +3,4 @@ title: Artworks
 section: artwork
 ---
 
-# a page
+# Artwork/s Page

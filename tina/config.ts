@@ -30,9 +30,9 @@ export default defineConfig({
 				name: 'artwork',
 				label: 'Artworks',
 				path: 'content/artwork',
-				match: {
-					exclude: '**/**/_index',
-				},
+				// match: {
+				// 	exclude: '**/**/_index',
+				// },
 				defaultItem: () => {
 					return {
 						layout: 'artwork',
@@ -109,7 +109,7 @@ export default defineConfig({
 						name: 'themes',
 						type: 'string',
 						description: 'Artwork subject',
-						required: true,
+						list: true,
 						options: [
 							{
 								value: 'abstract',
@@ -122,6 +122,27 @@ export default defineConfig({
 							{
 								value: 'others',
 								label: 'others',
+							},
+						],
+					},
+					{
+						label: 'Artworks',
+						name: 'artworks',
+						type: 'string',
+						description: 'Galeries for artworks',
+						list: true,
+						options: [
+							{
+								value: 'gallery',
+								label: 'gallery',
+							},
+							{
+								value: 'archive',
+								label: 'archive',
+							},
+							{
+								value: 'home',
+								label: 'home (only for 👑)',
 							},
 						],
 					},
@@ -301,19 +322,6 @@ export default defineConfig({
 							validate: (value) => {
 								if (value !== 'May 23, 1976') {
 									return '⚠️ Changing this date is only for Premium (May 23, 1976)';
-								}
-							},
-						},
-					},
-					{
-						label: '👑 In Home Page',
-						description: 'Add this item to home page',
-						name: 'inHome',
-						type: 'boolean',
-						ui: {
-							validate: (value) => {
-								if (value === true) {
-									return '⚠️ Turning this on is only for Premium';
 								}
 							},
 						},
@@ -963,29 +971,29 @@ export default defineConfig({
 					},
 				],
 			},
-			{
-				name: 'head',
-				label: 'Head pages',
-				path: 'content',
-				match: {
-					include: '**/**/_index',
-					// exclude: '**/**',
-				},
-				fields: [
-					{
-						label: 'Draft',
-						name: 'draft',
-						type: 'boolean',
-					},
-					{
-						label: 'Title',
-						name: 'title',
-						type: 'string',
-						isTitle: true,
-						required: true,
-					},
-				],
-			},
+			// {
+			// 	name: 'head',
+			// 	label: 'Head pages',
+			// 	path: 'content',
+			// 	match: {
+			// 		include: '**/**/_index',
+			// 		// exclude: '**/**',
+			// 	},
+			// 	fields: [
+			// 		{
+			// 			label: 'Draft',
+			// 			name: 'draft',
+			// 			type: 'boolean',
+			// 		},
+			// 		{
+			// 			label: 'Title',
+			// 			name: 'title',
+			// 			type: 'string',
+			// 			isTitle: true,
+			// 			required: true,
+			// 		},
+			// 	],
+			// },
 		],
 	},
 	search: {
