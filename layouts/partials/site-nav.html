@@ -7,7 +7,7 @@
 		'relative': !sticky
 	}"
   x-init="scrollToReveal"
-  class="z-40 flex flex-wrap dark:text-skin-dark-grey11 text-skin-light-grey11 bg-skin-light-grey1 dark:bg-skin-dark-grey1 items-center justify-between w-full mb-2 transition-all duration-700 ease-in-out shadow-lg md:mb-3 navbar-expand-lg children ">
+  class="z-40 flex flex-wrap dark:text-brandDark-12 text-brand-12 bg-neutral-1 dark:bg-neutralDark-1 items-center justify-between w-full transition-all duration-700 ease-in-out shadow-lg shadow-brand-11/10 dark:shadow-black/20 navbar-expand-lg children ">
   <div class="flex items-center justify-start pl-3">
     {{ if .IsHome }}
       <span class="block">
@@ -39,7 +39,7 @@
 					border-y-4 px-[.7rem] h-full md:px-6 font-bold text-[1.02rem]
 					border-t-transparent
 					dark:border-t-transparent
-					dark:border-b-brand-d-7
+					dark:border-b-brandDark-7
 					border-b-brand-10
 					">
               {{/* border-t-transparent
@@ -66,15 +66,16 @@
         <li class="h-full grow">
           <a
             href="{{ .URL }}"
-            class=" flex items-center md:gap-1
-					md:py-5 py-4 text-skin-light-brand11 dark:text-skin-dark-brand12
-					border-y-4 px-[.7rem] h-full md:px-6 text-[.9rem]
-					{{ if eq $url $currentPage }}
+            title="{{ .Name }}"
+            name="{{ .Name }}"
+            class=" flex items-center md:gap-1 md:py-5 py-4 text-skin-light-brand11 dark:text-skin-dark-brand12 border-y-4 px-[.7rem] h-full md:px-6 text-[.9rem] 
+            {{ if eq $url $currentPage }}
               border-t-transparent dark:border-t-transparent
-              dark:border-b-skin-dark-brand5 border-b-skin-light-brand6
+              dark:border-b-brandDark-7 border-b-brand-6
             {{ else }}
               border-t-transparent dark:border-t-transparent
               border-b-transparent dark:border-b-transparent
+              hover:border-b-brand-9 dark:hover:border-b-brandDark-6
             {{ end }}
 					">
             {{ if .Pre }}
@@ -97,7 +98,7 @@
             {{ if .Post }}
               {{ $icon := string .Post }}
               <span
-                class="[&>*]:w-6 [&>*]:h-auto min-w-[1.8rem] md:min-w-[initial] h-auto dark:text-brand-d-10 md:dark:text-brand-d-10 text-brand-10 min-h-[1.5rem] flex items-center justify-center">
+                class="ml-1 [&>*]:w-6 [&>*]:h-auto min-w-[1.8rem] md:min-w-[initial] h-auto dark:text-brand-d-10 md:dark:text-brand-d-10 text-brand-10 min-h-[1.5rem] flex items-center justify-center">
                 {{ partial $icon . }}
               </span>
             {{ end }}
@@ -161,9 +162,11 @@
 						if (localStorage.theme === 'dark') {
 						localStorage.theme = 'light';
 						document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light'; // Add this line
 						} else {
 						localStorage.theme = 'dark';
 						document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark'; // Add this line
 						}
 					},
 					}"
@@ -186,6 +189,18 @@
     </ul>
   </div>
 </nav>
+
+<script>
+  // Set initial color scheme on page load
+  (function () {
+    const storedTheme = localStorage.theme;
+    const initialColorScheme = storedTheme === "dark" ? "dark" : "light";
+    document.documentElement.style.setProperty(
+      "--initial-color-scheme",
+      initialColorScheme
+    );
+  })();
+</script>
 
 <script>
   function scrollToReveal() {

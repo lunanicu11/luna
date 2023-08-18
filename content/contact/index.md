@@ -1,5 +1,6 @@
 ---
-title: contact
+title: Contact me
+layout: contact
 ---
 
 ## contact

@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <main class="block p-0 my-0 mx-auto max-w-[70rem]" role="main">
+    <div
+      class="full-bleed bg-gradient-to-r from-brand-12/10 dark:from-black/50">
+      <div class="grid grid-cols-1 md:grid-cols-2 h-[80vh] max-h-[40rem]">
+        <div class="relative w-full h-[80vh] max-h-[40rem] overflow-hidden">
+          <iframe
+            class="absolute top-0 left-0 w-full h-full"
+            src="{{ $.Site.Params.map }}"
+            frameborder="0"
+            style="border: 0"
+            allowfullscreen></iframe>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+          {{ partial "forms/buy-form-iframe.html" ( dict "ctx" . "type" "light" ) }}
+        </div>
+      </div>
+    </div>
+  </main>
+{{ end }}

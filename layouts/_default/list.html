@@ -1,3 +1,21 @@
 {{ define "main" }}
-  page/list
+  {{ $dev := 0 | default $.Site.Params.dev }}
+
+
+  <main class="block p-0 my-0 mx-auto max-w-[90vw]" role="main">
+    <section class="py-2">
+      <div
+        class="{{ .Site.Params.Prose }} max-w-[90vw] mx-auto pt-3 pb-4 text-center">
+        <h1>
+          {{ .Title }}
+        </h1>
+      </div>
+      <ul class="flex flex-wrap justify-center gap-2 mx-auto md:gap-8">
+        {{ range .Paginator.Pages }}
+          {{ partial "thumb-artwork.html" . }}
+        {{ end }}
+      </ul>
+      {{ partial "site-pagination.html" .Paginator }}
+    </section>
+  </main>
 {{ end }}

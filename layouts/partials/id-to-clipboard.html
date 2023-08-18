@@ -1,0 +1,63 @@
+{{ if eq .type "artwork id" }}
+    {{ .Scratch.Set "clipboard" (replace ( .ctx.Date.Format "2006-01-02") "-" "") }}
+{{ end }}
+
+{{ $id := replace ( .ctx.Date.Format "2006-01-02") "-" "" }}
+{{ $copy := .Scratch.Get "clipboard" }}
+
+
+<div
+    x-data="{ text: '{{ $id }}', copy: false }"
+    class="flex items-center justify-end gap-2 py-1 md:justify-start"
+>
+    <div
+    class="flex items-center gap-2"
+    x-on:click="copyText(), copy = true"
+    x-on:click.away="copy = false"
+    >
+    <div class="text-sm text-neutral-11 dark:text-neutralDark-11">
+        <span x-show="!copy"> Copy artwork id </span>
+        <span x-show="copy" class="text-green-600 dark:text-green-500">
+        Success
+        </span>
+    </div>
+    <div
+        class="inline-flex items-center justify-center gap-2 px-3 py-1 text-center rounded"
+        :class="!copy ? 'bg-neutral-4 dark:bg-neutral-d-4' : 'bg-green-100 dark:bg-green-800/50'"
+    >
+        <span x-show="!copy" class="text-neutral-9 dark:text-neutral-d-9">
+        {{ partial "icons/clipboard.svg" . }}
+        </span>
+        <span x-show="copy" class="text-green-600 dark:text-green-400">
+        {{ partial "icons/clipboard-check.svg" . }}
+        </span>
+
+        <span
+        class="text-sm"
+        data-art-id="{{ $id }}"
+        x-text="text"
+        :class="!copy ? 'text-neutral-10 dark:text-neutral-d-10' : 'text-green-600 dark:text-green-500' "
+        >
+        </span>
+    </div>
+    </div>
+</div>
+
+<script>
+    function copyText() {
+      var span = event.target;
+      //var text = span;
+      var text = document.querySelectorAll(
+        '[data-art-id*="value"]'
+      ).innerText;
+
+      var selection = window.getSelection();
+      var range = document.createRange();
+      range.selectNodeContents(span);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      document.execCommand("copy");
+      selection.removeAllRanges();
+    }
+  </script>

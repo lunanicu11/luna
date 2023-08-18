@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <main class="block p-0 my-0 mx-auto max-w-[70rem]" role="main">
+    <section class="{{ .Site.Params.Prose }} py-6 max-w-[80rem] mx-auto">
+      {{ .Content }}
+    </section>
+    <section class="">
+      {{ with .Site.GetPage "section" "exhibitions" }}
+        {{ range .Data.Pages.GroupByDate "2006" }}
+          <h2
+            class="mb-3 mt-0 text-neutral-10 dark:text-neutralDark-10 font-serif text-6xl font-bold">
+            <span class="sr-only">Events from </span>
+            {{ .Key }}
+          </h2>
+          <ul
+            class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-8">
+            {{ range .Pages }}
+              {{ partial "thumb-exhibitions.html" (dict "ctx" . "type" "") }}
+            {{ end }}
+          </ul>
+        {{ end }}
+      {{ end }}
+    </section>
+  </main>
+{{ end }}

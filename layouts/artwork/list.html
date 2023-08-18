@@ -1,3 +1,41 @@
 {{ define "main" }}
-  artwork/list
+  {{ $dev := 0 | default $.Site.Params.dev }}
+
+
+  <main class="block p-0 my-0 mx-auto max-w-[90vw]" role="main">
+    {{/* src : 300 x 433
+      303w: 300 x 433
+      429w: 400 x 577
+      605w: 500 x 577
+
+      <img draggable="false"
+      src="https://img01.ztat.net/article/spp-media-p1/202e5d4c136b404aadb2a77c41fbcf2c/b29834bd9ead4dfda09c3468cb816077.jpg?imwidth=300&amp;filter=packshot"
+      srcset="
+      https://img01.ztat.net/article/spp-media-p1/202e5d4c136b404aadb2a77c41fbcf2c/b29834bd9ead4dfda09c3468cb816077.jpg?imwidth=300&amp;filter=packshot 303w,
+      https://img01.ztat.net/article/spp-media-p1/202e5d4c136b404aadb2a77c41fbcf2c/b29834bd9ead4dfda09c3468cb816077.jpg?imwidth=400&amp;filter=packshot 429w,
+      https://img01.ztat.net/article/spp-media-p1/202e5d4c136b404aadb2a77c41fbcf2c/b29834bd9ead4dfda09c3468cb816077.jpg?imwidth=500&amp;filter=packshot 605w
+      "
+      sizes="(min-width: 768px) 288px, calc(50vw - 36px)"
+      loading="eager"
+      width="300"
+      height="433"
+      fetchpriority="high">
+    */}}
+
+
+    <section class="py-2">
+      <div
+        class="{{ .Site.Params.Prose }} max-w-[90vw] mx-auto pt-3 pb-4 text-center">
+        <h1>
+          {{ .Title }}
+        </h1>
+      </div>
+      <ul class="flex flex-wrap justify-center gap-2 mx-auto md:gap-8">
+        {{ range .Paginator.Pages }}
+          {{ partial "thumb-artwork.html" . }}
+        {{ end }}
+      </ul>
+      {{ partial "site-pagination.html" .Paginator }}
+    </section>
+  </main>
 {{ end }}

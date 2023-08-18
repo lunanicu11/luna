@@ -6,84 +6,39 @@
     {{- partial "site-scripts.html" . -}}
   </head>
   <body
+    x-data="{
+    bodyOverlay: true,
+    pullOut: false,
+    windowHeight: window.innerHeight
+    }"
+    x-init="() => {
+      window.addEventListener('resize', () => {
+          windowHeight = window.innerHeight;
+      });
+    }"
+    :class="{ 'overflow-hidden relative h-full min-h-screen': pullOut, 'overflow-y-scroll': !pullOut }"
     class="
     {{ .Site.Params.theme }}
-    bg-skin-light-grey2 dark:bg-skin-dark-grey2 text-skin-light-grey11 dark:text-skin-dark-grey11">
+    bg-neutral-1 dark:bg-neutralDark-1">
+    {{ if $.Site.Params.dev }}
+      <section class="{{ .Site.Params.Prose }}">
+        <ul>
+          <li>Kind: {{ .Kind }}</li>
+          <li>Type: {{ .Type }}</li>
+          <li>Layout: {{ .Layout }}</li>
+          <li>Section: {{ .Section }}</li>
+        </ul>
+      </section>
+    {{ end }}
+
     {{ block "header" . }}{{ partial "site-header.html" . }}{{ end }}
-
-
-    <div class="container mx-auto px-4">
-      <section
-        class=" prose prose-stone dark:prose-invert dark:prose-headings:text-skin-dark-brand9 prose-headings:text-skin-light-brand9 prose-a:text-skin-light-cta9 dark:prose-a:text-skin-dark-cta9 py-4">
-        <h1>Heading 1</h1>
-        <h2>Heading 2</h2>
-        <h3>Heading 3</h3>
-        <h4>Heading 4</h4>
-        <h5>Heading 5</h5>
-        <h6>Heading 6</h6>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-          architecto explicabo sit optio aliquam totam et, eos nam? Officia
-          beatae tempora aliquid placeat odit in laudantium,
-          <a href=""> sint accusamus ab nam. </a>
-        </p>
-      </section>
-      <section class="py-4 flex gap-3">
-        <button
-          type="button"
-          class="xinline-block min-w-[15rem] w-full text-center px-5 py-4 font-bold rounded-md shadow text-skin-light-cta1 bg-skin-light-cta9 dark:text-skin-dark-cta12 dark:bg-skin-dark-cta8 hover:dark:bg-opacity-80 hover:bg-opacity-80 transition duration-200">
-          MAIN CTA
-        </button>
-        <button
-          type="button"
-          class="xinline-block min-w-[15rem] w-full text-center px-5 py-4 font-bold rounded-md shadow text-skin-light-brand3 bg-skin-light-brand11 dark:text-skin-dark-brand12 dark:bg-skin-dark-brand5 hover:dark:bg-opacity-80 hover:bg-opacity-80 transition duration-200
-          ">
-          BRAND CTA
-        </button>
-        <button
-          type="button"
-          class="xinline-block min-w-[15rem] w-full text-center px-5 py-4 font-bold rounded-md shadow text-skin-light-brand9 bg-skin-light-brand5 dark:text-skin-dark-brand11 dark:bg-skin-dark-brand3 hover:dark:bg-opacity-80 hover:bg-opacity-80 transition duration-200
-          ">
-          BRAND SECONDARY CTA
-        </button>
-      </section>
-      <section class="py-4 flex gap-3">
-        <button
-          type="button"
-          class="xinline-block min-w-[15rem] w-full text-center text-sm px-3 py-3 font-bold rounded-md shadow text-skin-light-cta1 bg-skin-light-cta9 dark:text-skin-dark-cta12 dark:bg-skin-dark-cta8 hover:dark:bg-opacity-80 hover:bg-opacity-80 transition duration-200">
-          MAIN CTA
-        </button>
-        <button
-          type="button"
-          class="xinline-block min-w-[15rem] w-full text-center text-sm px-3 py-3 font-bold rounded-md shadow text-skin-light-brand3 bg-skin-light-brand11 dark:text-skin-dark-brand12 dark:bg-skin-dark-brand5 hover:dark:bg-opacity-80 hover:bg-opacity-80 transition duration-200
-          ">
-          BRAND CTA
-        </button>
-        <button
-          type="button"
-          class="xinline-block min-w-[15rem] w-full text-center text-sm px-3 py-3 font-bold rounded-md shadow text-skin-light-brand9 bg-skin-light-brand5 dark:text-skin-dark-brand11 dark:bg-skin-dark-brand3 hover:dark:bg-opacity-80 hover:bg-opacity-80 transition duration-200
-          ">
-          BRAND SECONDARY CTA
-        </button>
-      </section>
-    </div>
-
-    <main class="pb7" role="main">
-      {{ block "main" . }}{{ end }}
-      <ol class="list-decimal pl-10">
-        {{ range .Site.Pages }}
-          <li>
-            <a href="{{ .Permalink }}">
-              {{ if .Title }}
-                {{ .Title }}
-              {{ else }}
-                no tile
-              {{ end }}
-            </a>
-          </li>
-        {{ end }}
-      </ol>
-    </main>
+    {{ block "main" . }}
+      <main
+        class="block p-0 my-0 mx-auto max-w-[70rem] {{ .Site.Params.Prose }}"
+        role="main">
+        {{ .Content }}
+      </main>
+    {{ end }}
     {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
   </body>
 </html>

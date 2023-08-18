@@ -1,0 +1,42 @@
+{{ $prose := $.Site.Params.Prose }}
+{{ $title := $.Get "title" }}
+{{ $map := $.Get "map" }}
+{{ $pageParam := $.Page.Date }}
+{{ $pageTitle := $.Page.Title }}
+{{ $pageType := $.Page.Type }}
+
+
+<div class="full-bleed">
+<div class="grid grid-cols-1 md:grid-cols-2 h-[80vh] max-h-[40rem]">
+<div class="flex bg-gradient-to-l from-brand-12/10 dark:from-black/50 justify-center lg:justify-end items-center py-6 md:py-2 ">
+<section class="px-4 md:p-8 lg:mr-20">
+{{ with $pageTitle }}
+<h1>
+{{ . }}
+</h1>
+{{ end }}
+{{ with $.Page.Params.sub_title }}
+<p class="lead">
+{{ . }}
+</p>
+{{ end }}
+{{ .Inner | markdownify }}
+</section>
+</div>
+<div>
+{{ with $map }}
+<div class="relative w-full h-[80vh] max-h-[40rem] overflow-hidden">
+<iframe
+title="{{ $title }}"
+class="absolute top-0 left-0 w-full h-full"
+src="{{ . }}"
+width="600"
+height="600"
+frameborder="0"
+style="border: 0"
+allowfullscreen></iframe>
+</div>
+{{ end }}
+</div>
+</div>
+</div>

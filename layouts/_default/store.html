@@ -1,0 +1,99 @@
+{{ define "main" }}
+  <div class="{{ .Site.Params.Prose }}">
+    <h1>Gallery</h1>
+
+    <ul>
+      {{ range .Pages }}
+        <li>
+          <a href="{{ .Permalink }}">
+            {{ .Title }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+
+    {{ $list := 0 }}
+
+    {{ if $list }}
+      {{ $pages := site.GetPage "artwork" }}
+      <ul class="flex flex-wrap justify-center gap-2 mx-auto md:gap-8">
+        {{ range $pages.RegularPages }}
+          <li
+            class="listing-item w-full md:w-auto mx-4 md:mx-[initial] flex flex-col justify-between max-w-[23rem] p-2 mb-6 duration-500 ease-in-out bg-white rounded-sm hover:shadow-myShadow-hover shadow-myShadow dark:bg-neutralDark-3">
+            <div>
+              Imagine
+              {{/* <img
+                draggable="false"
+                srcset="`
+                ${artwork.thumb_M} 303w,
+                ${artwork.thumb_L}  429w,
+                ${artwork.thumb_XL} 605w
+                `"
+                src="artwork.thumb_M"
+                title="artwork.shortId"
+                alt="artwork.alt"
+                sizes="(min-width: 768px) 288px, calc(50vw - 36px)"
+                loading="lazy"
+                width="artwork.thumb_M_w"
+                height="artwork.thumb_M_h"
+                class="lazyload w-full h-auto rounded max-h-[90vh] md:max-h-[initial]"
+                srcset="
+                /uploads/2023-flourishing-journey-2_hu9652d03530311062100374856137add4_4016993_300x0_resize_q100_h1_box.webp 303w,
+                /uploads/2023-flourishing-journey-2_hu9652d03530311062100374856137add4_4016993_400x0_resize_q100_h1_box.webp 429w,
+                /uploads/2023-flourishing-journey-2_hu9652d03530311062100374856137add4_4016993_500x0_resize_q100_h1_box.webp 605w
+                "
+                src="/uploads/2023-flourishing-journey-2_hu9652d03530311062100374856137add4_4016993_300x0_resize_q100_h1_box.webp"
+                title="20230810"
+                alt="Flourishing Journey - artwork by Calina Lefter "
+                width="300"
+                height="303" />
+              */}}
+            </div>
+            <div class="flex flex-col w-full gap-2 pt-4">
+              <a class="artworkLink mainLink" href="{{ .Permalink }}"
+                ><h2
+                  class="py-0 my-0 font-serif text-base text-black dark:text-white">
+                  {{ .Title }}
+                </h2></a
+              >
+              <div class="flex items-baseline justify-between">
+                <small class="text-neutral-11 dark:text-neutral-d-11"
+                  ><span>{{ .Params.dimensions.width }}</span>
+                  <abbr title="width">W</abbr> x
+                  <span>{{ .Params.dimensions.height }}</span>
+                  <abbr title="Height">H</abbr> (<abbr title="centimetres"
+                    >cm</abbr
+                  >)</small
+                >
+              </div>
+              <div class="z-10 flex items-center justify-start info">
+                <div class="flex items-center justify-end">
+                  <button
+                    data-theme="lime"
+                    x-data=""
+                    x-tooltip="Ready to be shipped"
+                    type="button"
+                    class="hidden rounded-full md:block hover:bg-white/10">
+                    <span
+                      class="[&amp;_svg]:m-2 [&amp;_svg]:w-5 [&amp;_svg]:h-5 text-lime-600 dark:text-lime-400">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentcolor"
+                        class="bi bi-check-lg"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M12.736 3.97a.733.733.0 011.047.0c.286.289.29.756.01 1.05L7.88 12.01a.733.733.0 01-1.065.02L3.217 8.384a.757.757.0 010-1.06.733.733.0 011.047.0l3.052 3.093 5.4-6.425a.247.247.0 01.02-.022z"></path></svg
+                    ></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+        {{ end }}
+
+      </ul>
+    {{ end }}
+  </div>
+{{ end }}

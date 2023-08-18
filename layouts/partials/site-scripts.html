@@ -1,16 +1,15 @@
 {{/* For Users's overwrite */}}
 {{/* Libraries */}}
-<script src="/js/popper.min.js?v={{ now.Unix }}"></script>
-<script src="/js/tippy-bundle.umd.min.js?v={{ now.Unix }}"></script>
+<script defer src="/js/popper.min.js?v={{ now.Unix }}"></script>
+<script defer src="/js/tippy-bundle.umd.min.js?v={{ now.Unix }}"></script>
 
 {{/* Alpine Plugins */}}
 <script defer src="/js/collapse.min.js?v={{ now.Unix }}"></script>
 {{/* Alpine Core */}}
 <script defer src="/js/alpine.min.js?v={{ now.Unix }}"></script>
-{{ if eq .Page.Type "artwork" }}
-  <script src="/js/lazysizes.min.js?v={{ now.Unix }}"></script>
-{{ end }}
-
+<script defer src="/js/lazysizes.min.js?v={{ now.Unix }}"></script>
+<script src="/js/_form.js?v={{ now.Unix }}"></script>
+<script async defer src="https://www.google.com/recaptcha/api.js"></script>
 
 <script>
   if (
@@ -19,7 +18,9 @@
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     document.documentElement.classList.add("dark");
+    document.documentElement.style.colorScheme = "dark"; // Add this line
   } else {
     document.documentElement.classList.remove("dark");
+    document.documentElement.style.colorScheme = "light"; // Add this
   }
 </script>

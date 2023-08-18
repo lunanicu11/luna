@@ -1,0 +1,25 @@
+@layer base {
+  .btn-accent {
+    @apply text-accent-1 dark:text-accentDark-12 bg-accent-9  dark:bg-accentDark-8 hover:dark:text-white hover:dark:bg-opacity-80 hover:bg-accent-11 shadow-accent-10/30;
+  }
+  .btn-solid {
+    @apply text-brand-1 dark:text-brandDark-12 bg-brand-10 hover:dark:text-white dark:bg-brandDark-7 hover:dark:bg-opacity-80 hover:bg-brand-11 shadow-brand-10/50 dark:shadow-brand-12/20;
+  }
+  .btn-soft {
+    @apply text-brand-10 dark:text-brandDark-11 hover:dark:text-white bg-brand-3 dark:bg-brandDark-4 hover:dark:bg-opacity-80 hover:bg-brand-5 hover:text-black shadow-brand-10/30 dark:shadow-brand-12/10;
+  }
+
+  .btn-xs {
+    @apply text-xs rounded-sm min-w-[5rem] py-2 px-3;
+  }
+  .btn-sm {
+    @apply text-sm rounded min-w-[6rem] p-3;
+  }
+  .btn-normal {
+    @apply rounded-md min-w-[7rem] px-5 py-3;
+  }
+
+  .btn {
+    @apply flex items-center gap-1 text-center font-bold  shadow  transition duration-200;
+  }
+}

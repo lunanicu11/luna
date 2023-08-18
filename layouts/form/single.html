@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en"  class="h-full">
+  <head>
+    {{- partial "meta.html" . -}}
+    {{- partial "site-style.html" . -}}
+    {{- partial "site-scripts.html" . -}}
+  </head>
+  <body
+    class="bg-neutral-2 h-full dark:bg-neutralDark-2 text-foreground-light dark:text-foreground-dark">
+    {{ partial "forms/buy-form-iframe.html" ( dict "ctx" . "type" "full" ) }}
+
+  </body>
+</html>

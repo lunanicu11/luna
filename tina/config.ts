@@ -43,6 +43,7 @@ export default defineConfig({
 						price: 0,
 						weight: 0,
 						stock: 0,
+						years: 1976,
 						creationDate: 'May 23, 1976',
 					};
 				},
@@ -92,7 +93,19 @@ export default defineConfig({
 						},
 					},
 					{
-						label: 'Themes',
+						label: 'Year',
+						name: 'years',
+						type: 'string',
+						description: 'Creation year',
+						ui: {
+							component: 'date',
+							dateFormat: 'YYYY',
+							parse: (value) => value && value.format('YYYY'),
+						},
+					},
+
+					{
+						label: 'Theme',
 						name: 'themes',
 						type: 'string',
 						description: 'Artwork subject',
@@ -118,8 +131,8 @@ export default defineConfig({
 						type: 'string',
 						ui: {
 							validate: (value) => {
-								if (value?.length > 40) {
-									return 'Title cannot be more than 40 characters long';
+								if (value?.length > 120) {
+									return 'Title cannot be more than 120 characters long';
 								}
 							},
 						},
@@ -461,6 +474,79 @@ export default defineConfig({
 						name: 'body',
 						label: 'Body',
 						isBody: true,
+						templates: [
+							{
+								name: 'hero',
+								label: 'hero',
+								match: {
+									start: '{{%',
+									end: '%}}',
+								},
+								fields: [
+									{
+										label: 'Title',
+										name: 'title',
+										type: 'string',
+									},
+									{
+										label: 'Side',
+										name: 'side',
+										type: 'string',
+										options: [
+											{
+												value: 'left',
+												label: 'left',
+											},
+											{
+												value: 'right',
+												label: 'right',
+											},
+											{
+												value: 'center',
+												label: 'center',
+											},
+										],
+									},
+									{
+										name: 'children',
+										type: 'rich-text',
+									},
+									{
+										type: 'image',
+										name: 'asset',
+										label: 'Asset',
+										required: true,
+									},
+								],
+							},
+							{
+								name: 'map',
+								label: 'map',
+								match: {
+									start: '{{%',
+									end: '%}}',
+								},
+								fields: [
+									{
+										label: 'Title',
+										name: 'title',
+										type: 'string',
+										required: true,
+									},
+									{
+										name: 'children',
+										type: 'rich-text',
+									},
+									{
+										name: 'map',
+										label: 'map',
+										type: 'string',
+										required: true,
+										description: 'take only the src tag from iframe',
+									},
+								],
+							},
+						],
 					},
 					{
 						label: 'Seo',
@@ -795,6 +881,85 @@ export default defineConfig({
 						type: 'string',
 						isTitle: true,
 						required: true,
+					},
+					{
+						type: 'rich-text',
+						name: 'body',
+						label: 'Body',
+						isBody: true,
+						templates: [
+							{
+								name: 'hero',
+								label: 'hero',
+								match: {
+									start: '{{%',
+									end: '%}}',
+								},
+								fields: [
+									{
+										label: 'Title',
+										name: 'title',
+										type: 'string',
+									},
+									{
+										label: 'Side',
+										name: 'side',
+										type: 'string',
+										options: [
+											{
+												value: 'left',
+												label: 'left',
+											},
+											{
+												value: 'right',
+												label: 'right',
+											},
+											{
+												value: 'center',
+												label: 'center',
+											},
+										],
+									},
+									{
+										name: 'children',
+										type: 'rich-text',
+									},
+									{
+										type: 'image',
+										name: 'asset',
+										label: 'Asset',
+										required: true,
+									},
+								],
+							},
+							{
+								name: 'map',
+								label: 'map',
+								match: {
+									start: '{{%',
+									end: '%}}',
+								},
+								fields: [
+									{
+										label: 'Title',
+										name: 'title',
+										type: 'string',
+										required: true,
+									},
+									{
+										name: 'children',
+										type: 'rich-text',
+									},
+									{
+										name: 'map',
+										label: 'map',
+										type: 'string',
+										required: true,
+										description: 'take only the src tag from iframe',
+									},
+								],
+							},
+						],
 					},
 				],
 			},
