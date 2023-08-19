@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <div class="{{ .Site.Params.Prose }} max-w-[80rem] mx-auto">
+    {{ .Content | safeHTML }}
+  </div>
+  <section class="grid grid-cols-2 py-4 gap-6">
+    <div class="flex justify-end">
+      {{ if .PrevInSection }}
+        {{ $PrevInSection := .PrevInSection.Permalink }}
+
+        {{ partial "molecules/cta" (dict "ctx" . "type" $PrevInSection "color" "soft" "label" "Previous" "size" "md") }}
+      {{ else }}
+      {{ end }}
+    </div>
+    <div class="flex justify-start">
+      {{ if .NextInSection }}
+        {{ $NextInSection := .NextInSection.Permalink }}
+        {{ partial "molecules/cta" (dict "ctx" . "type" $NextInSection "color" "soft" "label" "Next" "size" "md") }}
+      {{ else }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

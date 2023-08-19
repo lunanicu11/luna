@@ -17,14 +17,17 @@
           <h2 class="text-5xl font-normal text-brand-7 dark:text-brandDark-7">My Recent events</h2>
         </div>
         <ul class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-8">
-          {{ range first 3 (where site.RegularPages "Type" "in" "exhibitions" ) }}
+          {{ range first 3 (where site.RegularPages "Type" "in" "events" ) }}
             {{ partial "thumb-exhibitions.html" (dict "ctx" . "type" "plain") }}
           {{ end }}
         </ul>
         <div class="flex justify-center">
-          {{ partial "molecules/cta" (dict "ctx" . "type" "/exhibitions/" "color" "solid" "label" "View all events" "size" "xl") }}
+          {{ partial "molecules/cta" (dict "ctx" . "type" "/events/" "color" "solid" "label" "View all events" "size" "xl") }}
         </div>
       </div>
     </section>
   </main>
 {{ end }}
+
+
+

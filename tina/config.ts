@@ -27,12 +27,37 @@ export default defineConfig({
 	schema: {
 		collections: [
 			{
+				name: 'head',
+				label: 'Head pages',
+				path: 'content',
+				match: {
+					exclude: '**/**/uploads/_index',
+					include: '**/**/_index',
+				},
+				format: 'md',
+				fields: [
+					{
+						label: 'Draft',
+						name: 'draft',
+						type: 'boolean',
+					},
+					{
+						label: 'Title',
+						name: 'title',
+						type: 'string',
+						isTitle: true,
+						required: true,
+					},
+				],
+			},
+			{
 				name: 'artwork',
 				label: 'Artworks',
 				path: 'content/artwork',
-				// match: {
-				// 	exclude: '**/**/_index',
-				// },
+				match: {
+					exclude: '**/**/_index',
+				},
+				format: 'md',
 				defaultItem: () => {
 					return {
 						layout: 'artwork',
@@ -404,13 +429,16 @@ export default defineConfig({
 				],
 			},
 			{
-				name: 'exhibition',
-				label: 'Exhibitions',
-				path: 'content/exhibitions',
+				name: 'event',
+				label: 'Events',
+				path: 'content/event',
+				match: {
+					exclude: '**/**/_index',
+				},
 				defaultItem: () => {
 					return {
 						eventCategory: 'exhibition',
-						layout: 'exhibition',
+						layout: 'event',
 						date: new Date().toISOString(),
 						endDate: 'May 23, 1976',
 						hour: 'only for premium member',
@@ -477,6 +505,31 @@ export default defineConfig({
 						type: 'string',
 					},
 
+					{
+						label: 'event',
+						name: 'events',
+						type: 'string',
+						description: 'event type',
+						// list: true,
+						options: [
+							{
+								value: 'event',
+								label: 'event',
+							},
+							{
+								value: 'exhibition',
+								label: 'exhibition',
+							},
+							{
+								value: 'solo',
+								label: 'solo',
+							},
+							{
+								value: 'other',
+								label: 'other',
+							},
+						],
+					},
 					{
 						type: 'rich-text',
 						name: 'body',
@@ -762,17 +815,17 @@ export default defineConfig({
 						// },
 					},
 					{
-						label: '👑 Layout',
-						description: 'only available for Premium Member',
+						label: 'Layout',
+						// description: 'only available for Premium Member',
 						name: 'layout',
 						type: 'string',
-						ui: {
-							validate: (value) => {
-								if (value !== 'exhibition') {
-									return '⚠️ Changing this is only for Premium Member (change back to exhibition)';
-								}
-							},
-						},
+						// ui: {
+						// 	validate: (value) => {
+						// 		if (value !== 'exhibition') {
+						// 			return '⚠️ Changing this is only for Premium Member (change back to exhibition)';
+						// 		}
+						// 	},
+						// },
 						options: [
 							{
 								value: 'exhibition',
@@ -971,29 +1024,6 @@ export default defineConfig({
 					},
 				],
 			},
-			// {
-			// 	name: 'head',
-			// 	label: 'Head pages',
-			// 	path: 'content',
-			// 	match: {
-			// 		include: '**/**/_index',
-			// 		// exclude: '**/**',
-			// 	},
-			// 	fields: [
-			// 		{
-			// 			label: 'Draft',
-			// 			name: 'draft',
-			// 			type: 'boolean',
-			// 		},
-			// 		{
-			// 			label: 'Title',
-			// 			name: 'title',
-			// 			type: 'string',
-			// 			isTitle: true,
-			// 			required: true,
-			// 		},
-			// 	],
-			// },
 		],
 	},
 	search: {

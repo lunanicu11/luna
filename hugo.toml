@@ -6,6 +6,7 @@ timeout = 60000
 paginate = 600
 
 [taxonomies]
+event = "events"
 artwork = "artworks"
 theme = "themes"
 size = "sizes"
@@ -24,9 +25,9 @@ name = "Bio"
 url = "/biography/"
 weight = 2
 [[menu.main]]
-identifier = "exhibitions"
-name = "Exhibitions"
-url = "/exhibitions/"
+identifier = "exhibition"
+name = "Events"
+url = "/events/"
 weight = 2
 [[menu.main]]
 identifier = "contact"

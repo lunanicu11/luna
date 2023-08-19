@@ -1,16 +1,17 @@
 ---
-title: RGA - 92nd Anual Exhibition RGA - 92nd Anual Exhibition RGA - 92nd Anual Exhibition
+title: RGA - 92nd Anual Exhibition RGA - 92nd Anual Exhibition RGA
 sub_title: Continuum Art in the flow
 date: 2023-08-11T16:37:43.860Z
 startDate: 2023-08-08T23:00:00.000Z
-link: "https://www.rga-artists.org.uk/exhibitions-events.html"
+link: 'https://www.rga-artists.org.uk/exhibitions-events.html'
 place: Home
 org: only for premium member
 solo: true
-endDate: "May 23, 1976"
+endDate: 'May 23, 1976'
 hour: only for premium member
 eventCategory: exhibition
-layout: exhibition
+layout: event
+events: other
 ---
 
 {{% map title="Something descriptive for maps" map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4963.501683419594!2d-0.9116825588844581!3d51.53612962729362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487694f07f546d91%3A0x2706964d3219b3d6!2sThe%20Old%20Fire%20Station%20Gallery!5e0!3m2!1sen!2suk!4v1683234045500!5m2!1sen!2sukmap:'https://goo.gl/maps/JiX4jEDg6P7zYVcH7" %}}
@@ -31,11 +32,11 @@ This student-led event aims to bring together a community of like-minded individ
 
 ## Program
 
-- The event will start at **6:00 PM** with welcome drinks and free canapes,
-- **6:30 PM**, followed by an Art Exhibition - there will be a brief introduction to the event, and
-- **7:00 PM**, the Sustainable Denim Fashion Show will start.
-- **8:00 PM**, there will be speakers who will share their motivational thoughts,
-- **8:30 PM**, a live singer will perform. The rest of the evening will be devoted to the DJ, networking, and relaxation.
+* The event will start at **6:00 PM** with welcome drinks and free canapes,
+* **6:30 PM**, followed by an Art Exhibition - there will be a brief introduction to the event, and
+* **7:00 PM**, the Sustainable Denim Fashion Show will start.
+* **8:00 PM**, there will be speakers who will share their motivational thoughts,
+* **8:30 PM**, a live singer will perform. The rest of the evening will be devoted to the DJ, networking, and relaxation.
 
 ## Sponsor
 

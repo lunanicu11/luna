@@ -17,9 +17,9 @@
     class="{{ $liClasses }} {{ $center }} mb-3 flex flex-col justify-between w-full p-4 items-start">
     <div class="flex w-full {{ $center }}">
       <span
-        class="text-neutral-9 dark:text-neutralDark-9 text-sm ">
+      class="text-neutral-9 dark:text-neutralDark-9 text-sm ">
         {{ with $ctx.Params.startDate }}
-          {{ . | dateFormat "Jan 2" }}
+          On {{ . | dateFormat "Jan 2 2006" }}
         {{ end }}
         {{ if .Site.Params.exhibitionEndDate }}
           {{ with $ctx.Params.endDate }}
@@ -28,7 +28,7 @@
           {{ end }}
         {{ end }}
       </span>
-      {{ with $ctx.Params.eventCategory }}
+      {{ with $ctx.Params.events }}
         <span
           class="text-neutral-12 dark:text-neutralDark-10 text-sm pl-2">
           ({{ . }})
@@ -46,7 +46,7 @@
 
         {{ with $ctx.Params.sub_title }}
           <span
-            class="font-sans {{ $center }} mt-3 pt-3 border-t border-brand-5 dark:border-brandDark-5 flex items-end text-base leading-tight text-neutral-11 dark:text-neutralDark-11">
+            class="font-sans {{ $center }} mt-3 pt-3 border-t border-neutral-5/50 dark:border-neutralDark-5/50 flex items-end text-base leading-tight text-neutral-11 dark:text-neutralDark-11">
             {{ . }}
           </span>
         {{ end }}
