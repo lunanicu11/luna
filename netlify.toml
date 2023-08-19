@@ -4,6 +4,8 @@ command = "tinacms build && hugo --gc --minify -d public;"
 
 [context.production.environment]
 HUGO_VERSION = "0.115.3"
+HUGO_ENV = "production"
+HUGO_ENABLEGITINFO = "true"
 
 [context.branch-deploy]
 command = "tinacms build && hugo --minify --gc -d public -b $DEPLOY_PRIME_URL"
@@ -17,42 +19,42 @@ command = "tinacms build && hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_UR
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.115.3"
 
-[[headers]]
-for = "/*.jpg"
+# [[headers]]
+# for = "/*.jpg"
 
-[headers.values]
-Cache-Control = "public, max-age=604800"
+# [headers.values]
+# Cache-Control = "public, max-age=604800"
 
-[[headers]]
-for = "/*.png"
+# [[headers]]
+# for = "/*.png"
 
-[headers.values]
-Cache-Control = "public, max-age=604800"
+# [headers.values]
+# Cache-Control = "public, max-age=604800"
 
-[[headers]]
-for = "/*.css"
+# [[headers]]
+# for = "/*.css"
 
-[headers.values]
-Cache-Control = "public, max-age=604800"
+# [headers.values]
+# Cache-Control = "public, max-age=604800"
 
-[[headers]]
-for = "/*.js"
+# [[headers]]
+# for = "/*.js"
 
-[headers.values]
-Cache-Control = "public, max-age=604800"
+# [headers.values]
+# Cache-Control = "public, max-age=604800"
 
-[[headers]]
-for = "/webfonts/*"
+# [[headers]]
+# for = "/webfonts/*"
 
-[headers.values]
-Cache-Control = "public, max-age=604800"
+# [headers.values]
+# Cache-Control = "public, max-age=604800"
 
-[[headers]]
-for = "/*"
+# [[headers]]
+# for = "/*"
 
-[headers.values]
-X-Frame-Options = "DENY"
-X-XSS-Protection = "1; mode=block"
-X-Content-Type-Options = "nosniff"
-Referrer-Policy = "no-referrer"
-Content-Security-Policy = "script-src 'self' 'unsafe-inline'"
+# [headers.values]
+# X-Frame-Options = "DENY"
+# X-XSS-Protection = "1; mode=block"
+# X-Content-Type-Options = "nosniff"
+# Referrer-Policy = "no-referrer"
+# Content-Security-Policy = "script-src 'self' 'unsafe-inline'"
