@@ -21,5 +21,15 @@ price: 0
 weight: 0
 siteMap: true
 layout: artwork
+images:
+  - title: Full
+    asset: /uploads/2011-dusk-by-the-lakeside.jpg
+    type: full
+  - title: Sym
+    asset: /uploads/rainbow_pheasant_sim3.jpg
+    type: sym
+  - title: Details
+    asset: /uploads/rainbow_pheasant_det1.jpg
+    type: details
 ---
 
