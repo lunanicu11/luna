@@ -16,13 +16,13 @@
         <li class="p-0 flex justify-center items-center">
           {{ if ne $paginator.PageNumber 1 }}
             <a
-              class="border-t text-brand-10 dark:text-brandDark-10 border-b border-brandDark-5 m-0 py-3 px-5 no-underline"
+              class="border-t text-brand-10 dark:text-brandDark-10 border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline"
               href="{{ $paginator.First.URL }}">
               ««
             </a>
           {{ else }}
             <span
-              class="cursor-not-allowed text-white/20 border-t border-b border-brandDark-5 m-0 py-3 px-5 no-underline">
+              class="cursor-not-allowed text-black/20 dark:text-white/20 border-t border-b border-brand-5 dark:border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline">
               ««
             </span>
           {{ end }}
@@ -33,13 +33,13 @@
         <li class="p-0 flex justify-center items-center">
           {{ if $paginator.HasPrev }}
             <a
-              class="border-t text-brand-10 dark:text-brandDark-10 border-b border-brandDark-5 m-0 py-3 px-5 no-underline"
+              class="border-t text-brand-10 dark:text-brandDark-10 border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline"
               href="{{ $paginator.Prev.URL }}">
               «
             </a>
           {{ else }}
             <span
-              class="cursor-not-allowed text-white/20 border-t border-b border-brandDark-5 m-0 py-3 px-5 no-underline">
+              class="cursor-not-allowed text-black/20 dark:text-white/20 border-t border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline">
               «
             </span>
           {{ end }}
@@ -50,14 +50,14 @@
         <li class="p-0 flex justify-center items-center">
           {{ if eq .PageNumber $paginator.PageNumber }}
             <span
-              class="cursor-not-allowed bg-brandDark-3 text-brand-7 dark:text-brandDark-7 border-t border-b border-brandDark-5 m-0 py-3 px-5 no-underline
+              class="cursor-not-allowed bg-brand-3 dark:bg-brandDark-3 text-brand-7 dark:text-brandDark-7 border-t border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline
         
         ">
               {{ .PageNumber }}
             </span>
           {{ else }}
             <a
-              class="border-t text-brand-10 dark:text-brandDark-10 border-b border-brandDark-5 m-0 py-3 px-5 no-underline
+              class="border-t text-brand-10 dark:text-brandDark-10 border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline
       
       "
               href="{{ .URL }}">
@@ -71,13 +71,13 @@
         <li class="p-0 flex justify-center items-center">
           {{ if and $paginator.HasNext }}
             <a
-              class="border-t text-brand-10 dark:text-brandDark-10 border-b border-brandDark-5 m-0 py-3 px-5 no-underline"
+              class="border-t text-brand-10 dark:text-brandDark-10 border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline"
               href="{{ $paginator.Next.URL }}">
               »
             </a>
           {{ else }}
             <span
-              class="cursor-not-allowed text-white/20 border-t border-b border-brandDark-5 m-0 py-3 px-5 no-underline">
+              class="cursor-not-allowed text-white/20 border-t border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline">
               »
             </span>
           {{ end }}
@@ -88,13 +88,13 @@
         <li class="p-0 flex justify-center items-center">
           {{ if ne $paginator.PageNumber $paginator.TotalPages }}
             <a
-              class="border-e text-brand-10 dark:text-brandDark-10 rounded-e border-t border-b border-brandDark-5 m-0 py-3 px-5 no-underline"
+              class="border-e text-brand-10 dark:text-brandDark-10 rounded-e border-t border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline"
               href="{{ $paginator.Last.URL }}">
               »»
             </a>
           {{ else }}
             <span
-              class="cursor-not-allowed text-white/20 border-e rounded-e border-t border-b border-brandDark-5 m-0 py-3 px-5 no-underline">
+              class="cursor-not-allowed text-white/20 border-e rounded-e border-t border-b border-brand-5 dark:border-brandDark-5 m-0 py-3 px-5 no-underline">
               »»
             </span>
           {{ end }}
