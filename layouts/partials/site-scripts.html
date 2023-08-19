@@ -8,7 +8,7 @@
 {{/* Alpine Core */}}
 <script defer src="/js/alpine.min.js?v={{ now.Unix }}"></script>
 <script defer src="/js/lazysizes.min.js?v={{ now.Unix }}"></script>
-{{ if eq .Layout "form" }}
+{{ if or ( eq .Layout "contact" ) (eq .Layout "form") }}
   <script src="/js/_form.js?v={{ now.Unix }}"></script>
   <script async defer src="https://www.google.com/recaptcha/api.js"></script>
 {{ end }}
