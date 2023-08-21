@@ -4,25 +4,24 @@
       {{ .Content }}
     </section>
 
-    
-  <section class="">
+    <section class="">
+      {{ $events := .Site.GetPage "section" "event" }}
 
-    {{ $events := .Site.GetPage "section" "event" }}
+      {{ range ($events.Pages.GroupByParamDate "startDate" "2006") }}
+        <h2
+          class="px-3 md:px-2 mb-3 mt-0 text-neutral-10 dark:text-neutralDark-10 font-serif text-6xl font-bold">
+          <span class="sr-only">Events from </span>
+          {{ .Key }}
+        </h2>
+        {{/* {{ partial "site-breakpoints.html" }} */}}
 
-    {{ range ($events.Pages.GroupByParamDate "startDate" "2006") }}
-      <h2
-      class="mb-3 mt-0 text-neutral-10 dark:text-neutralDark-10 font-serif text-6xl font-bold">
-      <span class="sr-only">Events from </span>
-      {{ .Key }}
-      </h2>
-      <ul class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-8">
-        {{ range .Pages.ByParam "startDate" }}
-          {{ partial "thumb-exhibitions.html" (dict "ctx" . "type" "") }}
-      
-        {{ end }}
-      </ul>
+        <ul
+          class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-6 mx-3 md:mx-2">
+          {{ range .Pages.ByParam "startDate" }}
+            {{ partial "thumb-exhibitions.html" (dict "ctx" . "type" "") }}
+          {{ end }}
+        </ul>
       {{ end }}
-  </section>
-
+    </section>
   </main>
 {{ end }}

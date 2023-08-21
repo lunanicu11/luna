@@ -20,6 +20,11 @@ In 2016 she moved to the UK (Reading) and she became a member of “Reading Guil
 
 Among the most important exhibitions:
 
+1. sample
+1. sample
+1. sample
+1. sample
+
 - Public Art in The Plaza/Erftstadt Court - _Wokingham 2022_
 - Sense of Space 2022 - _South Hill Park Centre for the Arts_
 - Reading Charity art Fair 2021 - _Leighton Park_

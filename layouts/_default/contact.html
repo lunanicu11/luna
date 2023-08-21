@@ -2,16 +2,29 @@
   <main class="block p-0 my-0 mx-auto max-w-[70rem]" role="main">
     <div
       class="full-bleed bg-gradient-to-r from-brand-12/10 dark:from-black/50">
-      <div class="grid grid-cols-1 md:grid-cols-2 h-[80vh] max-h-[40rem]">
-        <div class="relative w-full h-[80vh] max-h-[40rem] overflow-hidden">
-          <iframe
-            class="absolute top-0 left-0 w-full h-full"
-            src="{{ $.Site.Params.map }}"
-            frameborder="0"
-            style="border: 0"
-            allowfullscreen></iframe>
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="flex justify-center items-center w-full">
+          {{/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum atque aut, veritatis deserunt corporis neque rerum sed quas? Odio inventore deserunt accusamus voluptas eveniet, illo temporibus optio rerum amet animi?</p> */}}
+
+
+          <div
+            class="relative w-full h-[70vh] md:h-[80vh]  max-h-[40rem] overflow-hidden">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="{{ $.Site.Params.map }}"
+              frameborder="0"
+              style="border: 0"
+              allowfullscreen></iframe>
+          </div>
         </div>
-        <div class="flex flex-col justify-center items-center">
+        <div class="flex justify-center overflow-y-hidden items-center w-full">
+          {{/* <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+            atque aut, veritatis deserunt corporis neque rerum sed quas? Odio
+            inventore deserunt accusamus voluptas eveniet, illo temporibus optio
+            rerum amet animi?
+            </p>
+          */}}
           {{ partial "forms/buy-form-iframe.html" ( dict "ctx" . "type" "light" ) }}
         </div>
       </div>

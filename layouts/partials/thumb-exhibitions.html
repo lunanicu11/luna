@@ -2,24 +2,25 @@
 {{ $type := .type }}
 {{ $link := $ctx.Permalink }}
 
-{{ $liClasses := ""}}
-{{ $center := ""}}
-{{ $dateClass := ""}}
+{{ $liClasses := "" }}
+{{ $center := "" }}
+{{ $dateClass := "" }}
 {{ if ne $type "plain" }}
-{{ $liClasses = "bg-white border rounded dark:rounded dark:bg-neutralDark-3/50 duration-500 ease-in-out  border-neutral-3/80 dark:border-neutralDark-3/50 hover:shadow-myShadow-hover shadow-myShadow"}}
+  {{ $liClasses = "bg-white border rounded dark:rounded dark:bg-neutralDark-3/50 duration-500 ease-in-out border-neutral-3/80 dark:border-neutralDark-3/50 hover:shadow-myShadow-hover shadow-myShadow border border-neutral-3 hover:border-neutral-5 dark:border-neutralDark-3 hover:dark:border-neutralDark-6" }}
 {{ else }}
-{{ $dateClass := "justify-center"}}
-{{ $center = "justify-center text-center" }}
+  {{ $dateClass := "justify-center" }}
+  {{ $center = "justify-center text-center" }}
 {{ end }}
 
-<li class="flex p-0 ">
+
+<li class="flex p-0">
   <div
     class="{{ $liClasses }} {{ $center }} mb-3 flex flex-col justify-between w-full p-4 items-start">
     <div class="flex w-full {{ $center }}">
-      <span
-      class="text-neutral-9 dark:text-neutralDark-9 text-sm ">
+      <span class="text-neutral-9 dark:text-neutralDark-9 text-sm ">
         {{ with $ctx.Params.startDate }}
-          On {{ . | dateFormat "Jan 2 2006" }}
+          On
+          {{ . | dateFormat "Jan 2 2006" }}
         {{ end }}
         {{ if .Site.Params.exhibitionEndDate }}
           {{ with $ctx.Params.endDate }}
@@ -29,8 +30,7 @@
         {{ end }}
       </span>
       {{ with $ctx.Params.events }}
-        <span
-          class="text-neutral-12 dark:text-neutralDark-10 text-sm pl-2">
+        <span class="text-neutral-12 dark:text-neutralDark-10 text-sm pl-2">
           ({{ . }})
         </span>
       {{ end }}

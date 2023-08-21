@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     {{- partial "meta.html" . -}}
@@ -21,6 +21,9 @@
     {{ .Site.Params.theme }}
     bg-neutral-1 dark:bg-neutralDark-1">
     {{ if $.Site.Params.dev }}
+      {{ partial "site-breakpoints.html" }}
+
+
       <section class="{{ .Site.Params.Prose }}">
         <ul>
           <li>Kind: {{ .Kind }}</li>

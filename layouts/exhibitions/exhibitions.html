@@ -23,7 +23,7 @@
       {{ with .Site.GetPage "section" "events" }}
         {{ range .Pages.GroupByDate "2006" }}
           <h2
-            class="mb-3 mt-0 text-neutral-10 dark:text-neutralDark-10 font-serif text-6xl font-bold">
+            class="px-3 md:px-0 mb-3 mt-0 text-neutral-10 dark:text-neutralDark-10 font-serif text-6xl font-bold">
             <span class="sr-only">Events from </span>
             {{ .Key }}
           </h2>

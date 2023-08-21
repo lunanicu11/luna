@@ -1,9 +1,9 @@
 @import "buttons.css";
 
 @layer base {
-  /* body * {
+  body * {
     outline: 1px solid red;
-  } */
+  }
 
   :root {
     color-scheme: var(--initial-color-scheme, light);
@@ -49,9 +49,15 @@
   .prose > h4,
   .prose > h5,
   .prose > h6,
-  .prose > p,
-  .prose > ul {
-    @apply px-3 md:px-0;
+  .prose > p {
+    @apply px-2 md:px-0;
+  }
+  .prose > ul,
+  .prose > ol {
+    @apply px-2 md:px-0 ms-7;
+  }
+  .prose > blockquote {
+    @apply pl-4 pr-2 md:pl-3 md:pr-2 ml-2 md:ml-0;
   }
 
   .btn-accent {
