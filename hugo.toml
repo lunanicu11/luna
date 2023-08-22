@@ -54,6 +54,20 @@ exhibitionEndDate = false
 organizedBy = false
 prose = "prose prose-brand dark:prose-invert prose-h1:font-serif prose-h1:font-normal prose-h2:font-serif prose-h3:font-serif prose-h4:font-serif prose-h5:font-bold prose-thead:font-bold prose-thead:font-serif"
 
+# SOCIAL ------------------------------
+[[params.social]]
+link = "https://www.facebook.com/alifantro"
+[[params.social]]
+link = "https://www.instagram.com/calinalefter/"
+[[params.social]]
+link = "https://www.pinterest.it/calinalefter/"
+[[params.social]]
+link = "https://twitter.com/moondiary"
+[[params.social]]
+link = "https://calinalefter.tumblr.com/"
+[[params.social]]
+link = "https://www.linkedin.com/feed/"
+
 # Studio MAP --------------------------
 # -------------------------------------
 map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2487.6608083246297!2d-0.9244227838771734!3d51.427657179621995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487685ea685a7425%3A0x860b296ac5d34ee!2sArtist+Calina+Lefter!5e0!3m2!1sen!2suk!4v1529055792412"
