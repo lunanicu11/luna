@@ -1,9 +1,9 @@
 @import "buttons.css";
 
 @layer base {
-  body * {
+  /* body * {
     outline: 1px solid red;
-  }
+  } */
 
   :root {
     color-scheme: var(--initial-color-scheme, light);
