@@ -54,17 +54,6 @@ exhibitionEndDate = false
 organizedBy = false
 prose = "prose prose-brand dark:prose-invert prose-h1:font-serif prose-h1:font-normal prose-h2:font-serif prose-h3:font-serif prose-h4:font-serif prose-h5:font-bold prose-thead:font-bold prose-thead:font-serif"
 
-# SOCIAL ------------------------------
-[[params.social]]
-link = "https://www.facebook.com/alifantro"
-[[params.social]]
-link = "https://www.instagram.com/calinalefter/"
-[[params.social]]
-link = "https://www.pinterest.it/calinalefter/"
-[[params.social]]
-link = "https://twitter.com/moondiary"
-[[params.social]]
-link = "https://calinalefter.tumblr.com/"
 
 # Studio MAP --------------------------
 # -------------------------------------
@@ -96,6 +85,17 @@ _price = "entry.1234567890"
 _stock = "entry.1234567890"
 _recaptcha = "6LcWTlwlAAAAAOZcPd0EjYokFxcTzrH3eGoQjbnH"
 
+# SOCIAL ------------------------------
+[[params.social]]
+link = "https://www.facebook.com/alifantro"
+[[params.social]]
+link = "https://www.instagram.com/calinalefter/"
+[[params.social]]
+link = "https://www.pinterest.it/calinalefter/"
+[[params.social]]
+link = "https://twitter.com/moondiary"
+[[params.social]]
+link = "https://calinalefter.tumblr.com/"
 
 # [outputs]
 # #gallery = ["html", "json"]
