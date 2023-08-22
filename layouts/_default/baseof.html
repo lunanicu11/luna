@@ -19,10 +19,8 @@
     :class="{ 'overflow-hidden relative h-full min-h-screen': pullOut, 'overflow-y-scroll': !pullOut }"
     class="
     {{ .Site.Params.theme }}
-    bg-neutral-1 dark:bg-neutralDark-1">
-    {{ if $.Site.Params.dev }}
-      {{ partial "site-breakpoints.html" }}
-
+    bg-neutral-1 dark:bg-neutralDark-1 relative">
+    {{ if and $.Site.Params.dev  (not hugo.IsProduction) }}
 
       <section class="{{ .Site.Params.Prose }}">
         <ul>
@@ -44,5 +42,8 @@
       </main>
     {{ end }}
     {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
+    {{ if not hugo.IsProduction }}
+      {{ partial "site-breakpoints.html" }}
+    {{ end }}
   </body>
 </html>
