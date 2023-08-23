@@ -23,8 +23,6 @@ module.exports = {
 		'[&>*:first-child>span]:border-s',
 		'[&>*:last-child>span]:border-e',
 		'[&>*:svg]:',
-
-		
 	],
 	plugins: [typography, forms],
 	theme: {

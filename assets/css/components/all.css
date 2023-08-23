@@ -83,4 +83,28 @@
   .btn {
     @apply flex justify-center items-center gap-1 text-center font-bold  shadow  transition duration-200;
   }
+
+  .splide .splide__pagination__page {
+    background: var(--fg, black);
+    outline: 2px solid var(--bg, white);
+  }
+  .splide .splide__pagination__page.is-active {
+    background: var(--bg, white);
+    outline: 0 solid var(--bg, white);
+  }
+  .splide .splide__arrow {
+    background: var(--bg, white);
+  }
+  .splide .splide__arrow svg {
+    fill: var(--fg, black);
+  }
+
+  .splide .splide__pagination {
+    bottom: 0;
+  }
+  .splide .splide__pagination__page {
+    margin: 0 0.5rem;
+    width: 0.8rem;
+    height: 0.8rem;
+  }
 }

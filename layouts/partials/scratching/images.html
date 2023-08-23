@@ -1,14 +1,12 @@
 {{ $images := $.Scratch }}
 
-
 {{/* MODEL ----------------------------
-  
+
   src : 300 x 433
   303w: 300 x 433
   429w: 400 x 577
   605w: 500 x 577
-
-  */}}
+*/}}
 {{ $thumbCropOptionXL := "500x800 smart q100 picture webp" }}
 {{ $thumbCropOptionL := "400x700 smart q100 picture webp" }}
 {{ $thumbCropOptionM := "300x500 smart q100 picture webp" }}
@@ -19,7 +17,8 @@
 
 {{ $images.Set "_ctx" . }}
 {{ $images.Set "_ratio" "-" }}
-{{ $images.Set "_color" slice }}
+{{ $images.Set "_colors" slice }}
+{{ $images.Set "slider" slice }}
 
 {{/* THUMB ----------------------------- */}}
 
@@ -34,29 +33,64 @@
 {{ $images.Set "_thumb_M_w" "-" }}
 {{ $images.Set "_thumb_M_h" "-" }}
 
+{{ with .Params.images }}
+  {{ $imagesList := . }}
+  {{ range $index, $img := $imagesList }}
+    {{ $source := strings.TrimPrefix "/uploads/" $img.asset }}
+    {{ $title := $img.title }}
+    {{ $type := $img.type }}
+    {{ range $.Site.Pages }}
+      {{ with .Resources.Match $source }}
+        {{ range . }}
+          {{ $slider_M := .Resize "370x center q100 picture webp" }}
+          {{ $slider_L := .Resize "800x center q100 picture webp" }}
+          {{ $slider_XL := .Resize "1052x center q100 picture webp" }}
+          {{ $.Scratch.Add "slider" (slice (dict
+            "type" $type
+            "title" $title
+            "index" $index
+            "slider_M" $slider_M.RelPermalink
+            "slider_M_w" $slider_M.Width
+            "slider_M_h" $slider_M.Height
+            "slider_L" $slider_L.RelPermalink
+            "slider_L_w" $slider_L.Width
+            "slider_L_h" $slider_L.Height
+
+            ))
+          }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    {{/* {{ $type }}
+    {{ $title }}
+    {{ $source }} */}}
+  {{ end }}
+{{ end }}
+
 {{ with index .Params.images 0 }}
   {{ $thumb := strings.TrimPrefix "/uploads/" .asset }}
   {{ $images.Set "_thumbSrc" $thumb }}
-  
+
   {{ range $.Site.Pages }}
     {{ with .Resources.Match $thumb }}
       {{ range . }}
         {{/* Check Ratio ----------------------- */}}
         {{- $thumb := .Resize "1052x center q100 picture webp" -}}
-        {{- $w := $thumb.Width}}
-        {{- $h := $thumb.Height}}
+        {{- $w := $thumb.Width }}
+        {{- $h := $thumb.Height }}
         {{- $images.Set "_ratio" (div ( div $h 1.00) $w | lang.FormatNumber 2) -}}
-        
+
         {{/* Check COLOR ----------------------- */}}
-        {{- $color := $thumb.Colors -}}
-        {{- $images.Set "_color" $color -}}
-        
+        {{- $colors := $thumb.Colors -}}
+        {{- $images.Set "_colors" $colors -}}
+
         {{/* Resize ----------------------------- */}}
         {{ if gt ($images.Get "_ratio") 1.8 }}
           {{ $thumb_XL := .Fill $thumbCropOptionXL }}
           {{ $thumb_L := .Fill $thumbCropOptionL }}
           {{ $thumb_M := .Fill $thumbCropOptionM }}
-          
+
           {{ $images.Set "_thumb_XL" $thumb_XL.RelPermalink }}
           {{ $images.Set "_thumb_XL_w" $thumb_XL.Width }}
           {{ $images.Set "_thumb_XL_h" $thumb_XL.Height }}
@@ -66,22 +100,20 @@
           {{ $images.Set "_thumb_M" $thumb_M.RelPermalink }}
           {{ $images.Set "_thumb_M_w" $thumb_M.Width }}
           {{ $images.Set "_thumb_M_h" $thumb_M.Height }}
-          
         {{ else }}
           {{ $thumb_XL := .Resize $thumbOptionXL }}
           {{ $thumb_L := .Resize $thumbOptionL }}
           {{ $thumb_M := .Resize $thumbOptionM }}
-          
+
           {{ $images.Set "_thumb_XL" $thumb_XL.RelPermalink }}
           {{ $images.Set "_thumb_XL_w" $thumb_XL.Width }}
           {{ $images.Set "_thumb_XL_h" $thumb_XL.Height }}
           {{ $images.Set "_thumb_L" $thumb_L.RelPermalink }}
           {{ $images.Set "_thumb_L_w" $thumb_L.Width }}
           {{ $images.Set "_thumb_L_h" $thumb_L.Height }}
-          {{/*  {{ $images.Set "_thumb_M" $thumb_M.RelPermalink }}
+          {{/* {{ $images.Set "_thumb_M" $thumb_M.RelPermalink }}
           {{ $images.Set "_thumb_M_w" $thumb_M.Width }}
-          {{ $images.Set "_thumb_M_h" $thumb_M.Height }}  */}}
-          
+          {{ $images.Set "_thumb_M_h" $thumb_M.Height }} */}}
           {{ $images.Set "_thumb_M" $thumb_M.RelPermalink }}
           {{ $images.Set "_thumb_M_w" $thumb_M.Width }}
           {{ $images.Set "_thumb_M_h" $thumb_M.Height }}
@@ -90,7 +122,3 @@
     {{ end }}
   {{ end }}
 {{ end }}
-
-
-
-

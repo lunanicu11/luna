@@ -18,9 +18,9 @@
 <div class="full-bleed bg-gradient-to-l from-brand-12/10 dark:from-black/50">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
 <div
-class="flex justify-center  lg:justify-end items-center py-6 md:py-2 {{ $imageRightCLass}} "
+class="flex justify-center xlg:justify-end items-center py-6 md:py-2 {{ $imageRightCLass}} "
 >
-<section class="{{ $prose }} py-6 px-0 md:px-4 md:p-8 lg:mr-20 md:min-w-[30rem]">
+<section class="{{ $prose }} py-6 px-0 md:px-4 md:p-8 max-w-[40rem]">
 {{ with $title }}
 <h1>{{ . }}</h1>
 {{ end }}
@@ -30,7 +30,7 @@ class="flex justify-center  lg:justify-end items-center py-6 md:py-2 {{ $imageRi
 */}}
 </div>
 <div class="{{ $imageLeftCLass }} h-full flex justify-center items-center">
-<section class=" flex justify-center items-center">
+<section class=" flex justify-center items-center w-full md:w-auto px-0 md:px-2">
 {{- if ne $asset  "" -}}
 {{- $sourceItem := strings.TrimPrefix "/uploads/" $asset -}}
 {{- range $.Site.Pages -}}
@@ -47,7 +47,7 @@ class="flex justify-center  lg:justify-end items-center py-6 md:py-2 {{ $imageRi
 <img
 draggable="false"
 alt="{{ $title }}"
-class="h-full w-full md:w-auto "
+class="h-full w-full md:w-auto md:rounded"
 src="{{ $asset_M }}"
 srcset="
 {{ $linkAsset_M }} 303w,

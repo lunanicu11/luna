@@ -3,13 +3,68 @@
 <div class="mx-auto md:max-w-[1600px] grid grid-cols-[1fr] md:grid-cols-[auto_minmax(30rem,_.4fr)] mb-10 md:px-3">
   <div class="self-stretch
   md:before:rounded-md relative mb-4 md:py-3 before:opacity-[.3] md:before:opacity-[.1] before:z-[-1] before:bg-[var(--bg)] before:inset-0 before:absolute before:block before:content-['']">
-    <div class="flex rounded items-center justify-center w-full px-3 pt-4 pb-3 md:px-0 md:pb-0 md:pt-0 min-h-[50vh] dark:bg-white/10 bg-black/5">
-      the gallery is work in pogress
+    <div class="flex rounded items-center justify-center w-full px-3 pt-4 pb-3 md:px-0 md:pb-2 md:pt-2 min-h-[50vh] dark:bg-white/5 bg-black/5">
+      
+      {{ partial "scratching/images.html" . }}
+
+      {{ $slider := .Scratch.Get "slider" }}
+
+      {{/*  {{ $colors := .Scratch.Get "_colors" }}
+      <div class="flex">
+        {{ range $colors }}
+          <div class="w-8 h-8" style="background: {{ safeCSS  . }};"></div>
+        {{ end }}
+      </div>  */}}
+
+      {{/*  <div class="splide__pagination__page is-active splide__arrow splide__pagination splide__pagination__page"></div>  */}}
+
+      <div
+        x-data="{
+					init() {
+						new Splide(this.$refs.splide, {
+							perPage: 1,
+							gap: '0.5rem',
+							type   : 'slide',
+							breakpoints: {
+								640: {
+									perPage: 1,
+								},
+							},
+						}).mount()
+					},
+				}">
+        <section x-ref="splide" class="splide" aria-label="Carousel Example">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {{ range $index, $img := $slider }}
+                
+
+                <li
+                  class="flex flex-col items-center justify-center pb-8 splide__slide">
+                  <img
+                    {{ if $index }}
+                      loading="lazy" data-src="{{ .slider_L }}" class="lazyload
+                      w-auto max-h-[80vh] rounded"
+                    {{ else }}
+                      src="{{ .slider_L }}" class="product__image w-auto
+                      max-h-[80vh] rounded"
+                    {{ end }}
+                    alt="{{ .title }}"
+                    width="{{ .slider_L_w }}"
+                    height="{{ .slider_L_h }}" />
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        </section>
+      </div>
+
+
     </div>
   </div>
   <div class="px-2 md:py-6 md:px-4 max-w-[30rem]">
     <h1 class="text-brand-9 dark:text-brand-9 text-3xl font-serif">
-      {{ .Title }} | 
+      {{ .Title | title }} | 
       <small>artwork by {{ .Site.Params.name }} {{ with .Params.years }}- {{ . }}{{ end }}</small>
     </h1>
     {{ with .Params.techniqueUsed }}

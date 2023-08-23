@@ -9,7 +9,6 @@
 
 {{/* Other styles */}}
 {{ $splide := resources.Get "/css/splide.css" | minify }}
-
 {{- if .Page.Params.images -}}
 <style>
   {{ $splide.Content | safeCSS }}
@@ -22,3 +21,19 @@
 <link
   href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
   rel="stylesheet" />
+
+{{ partial "scratching/images.html" . }}
+{{ $colors :=.Scratch.Get "_colors" }}
+
+{{ $scssTemplate := resources.Get "scss/colors.scss" }}
+
+{{ $vars := $scssTemplate | resources.ExecuteAsTemplate "var.colors.scss" . | toCSS | minify | fingerprint }}
+
+<style title="colors">
+  body {
+    {{ range $colors }}
+    background: {{ . }}
+    {{ end }}
+  }
+  {{ $vars.Content | safeCSS }}
+</style>

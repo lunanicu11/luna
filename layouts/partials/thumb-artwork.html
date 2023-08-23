@@ -2,7 +2,7 @@
 
 
 <li
-  class="listing-item w-full md:w-auto mx-4 md:mx-[initial] flex flex-col justify-between max-w-[20rem] p-2 mb-6 duration-500 ease-in-out bg-white rounded hover:shadow-myShadow-hover shadow-myShadow dark:bg-neutralDark-3 border border-neutral-3 hover:border-neutral-5 dark:border-neutralDark-3 hover:dark:border-neutralDark-6">
+  class="listing-item w-full md:w-auto mx-4 md:mx-[initial] flex flex-col justify-between max-w-[20rem] p-2 mb-6 duration-500 ease-in-out bg-white rounded-sm hover:shadow-myShadow-hover shadow-myShadow dark:bg-neutralDark-3 border dark:border-neutralDark-3 hover:dark:border-neutralDark-5 dark:border-neutralDark-3 hover:dark:border-neutralDark-5">
   <div>
     {{/* {{ $source := "" }}
     {{ with index .Params.images 0 }}
@@ -58,7 +58,7 @@
       {{ .Scratch.Get "_ctx" }}
       <hr />
       _color:
-      {{ $colors := .Scratch.Get "_color" }}
+      {{ $colors := .Scratch.Get "_colors" }}
       <div class="flex">
         {{ range $colors }}
           <div class="w-8 h-8" style="background: {{ safeCSS  . }};"></div>

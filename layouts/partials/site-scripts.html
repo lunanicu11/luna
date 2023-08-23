@@ -12,6 +12,12 @@
   <script src="/js/_form.js?v={{ now.Unix }}"></script>
   <script async defer src="https://www.google.com/recaptcha/api.js"></script>
 {{ end }}
+
+{{ if .Page.Params.images }}
+  <script src="/js/splide.min.js?v={{ now.Unix }}"></script>
+{{ end }}
+
+
 <script>
   if (
     localStorage.theme === "dark" ||
