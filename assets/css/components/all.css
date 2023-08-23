@@ -92,6 +92,9 @@
     background: var(--bg, white);
     outline: 0 solid var(--bg, white);
   }
+  .splide .splide__arrow:disabled {
+    @apply cursor-not-allowed opacity-0 md:opacity-5;
+  }
   .splide .splide__arrow {
     background: var(--bg, white);
   }
