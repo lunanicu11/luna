@@ -10,7 +10,7 @@
 {{/* Other styles */}}
 {{ $splide := resources.Get "/css/splide.css" | minify }}
 {{- if .Page.Params.images -}}
-<style>
+<style data-splide>
   {{ $splide.Content | safeCSS }}
 </style>
 {{- end -}}
@@ -22,18 +22,20 @@
   href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
   rel="stylesheet" />
 
-{{ partial "scratching/images.html" . }}
-{{ $colors :=.Scratch.Get "_colors" }}
+{{- if .Page.Params.images -}}
+  {{ partial "scratching/images.html" . }}
+  {{ $colors :=.Scratch.Get "_colors" }}
 
-{{ $scssTemplate := resources.Get "scss/colors.scss" }}
+  {{ $scssTemplate := resources.Get "scss/colors.scss" }}
 
-{{ $vars := $scssTemplate | resources.ExecuteAsTemplate "var.colors.scss" . | toCSS | minify | fingerprint }}
+  {{ $vars := $scssTemplate | resources.ExecuteAsTemplate "var.colors.scss" . | toCSS | minify | fingerprint }}
 
-<style title="colors">
-  body {
+  {{/*  body {
     {{ range $colors }}
     background: {{ . }}
     {{ end }}
-  }
+  }  */}}
+<style data-colors>
   {{ $vars.Content | safeCSS }}
 </style>
+{{ end }}

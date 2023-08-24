@@ -15,9 +15,9 @@
 }
 
 
-.vars {
+body {
   --test: {{ $colors }};
-  {{ range $colors }}
+  {{ range first 1 $colors }}
   @include text-contrast({{ . }});
   --bg: {{ . }};
   {{ end }}
