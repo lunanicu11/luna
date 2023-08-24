@@ -1,13 +1,13 @@
 ---
-title: RGA - 92nd Anual Exhibition RGA - 92nd Anual Exhibition RGA
+title: 12 last
 sub_title: Continuum Art in the flow
 date: 2023-08-11T16:37:43.860Z
-startDate: 2023-08-08T23:00:00.000Z
-link: 'https://www.rga-artists.org.uk/exhibitions-events.html'
+startDate: 2023-12-08T23:00:00.000Z
+link: "https://www.rga-artists.org.uk/exhibitions-events.html"
 place: Home
 org: only for premium member
 solo: true
-endDate: 'May 23, 1976'
+endDate: "May 23, 1976"
 hour: only for premium member
 eventCategory: exhibition
 layout: event
@@ -32,11 +32,11 @@ This student-led event aims to bring together a community of like-minded individ
 
 ## Program
 
-* The event will start at **6:00 PM** with welcome drinks and free canapes,
-* **6:30 PM**, followed by an Art Exhibition - there will be a brief introduction to the event, and
-* **7:00 PM**, the Sustainable Denim Fashion Show will start.
-* **8:00 PM**, there will be speakers who will share their motivational thoughts,
-* **8:30 PM**, a live singer will perform. The rest of the evening will be devoted to the DJ, networking, and relaxation.
+- The event will start at **6:00 PM** with welcome drinks and free canapes,
+- **6:30 PM**, followed by an Art Exhibition - there will be a brief introduction to the event, and
+- **7:00 PM**, the Sustainable Denim Fashion Show will start.
+- **8:00 PM**, there will be speakers who will share their motivational thoughts,
+- **8:30 PM**, a live singer will perform. The rest of the evening will be devoted to the DJ, networking, and relaxation.
 
 ## Sponsor
 

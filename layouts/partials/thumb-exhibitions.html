@@ -19,7 +19,7 @@
     <div class="flex w-full {{ $center }}">
       <span class="text-neutral-9 dark:text-neutralDark-9 text-sm ">
         {{ with $ctx.Params.startDate }}
-          On
+          Start on
           {{ . | dateFormat "Jan 2 2006" }}
         {{ end }}
         {{ if .Site.Params.exhibitionEndDate }}

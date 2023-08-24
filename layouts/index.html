@@ -11,16 +11,35 @@
         {{ end }}
       </ul>
     </section>
-    <section class="full-bleed flex flex-col pt-8 pb-10 dark:bg-black/10 bg-white border-t border-b border-neutral-3 dark:border-neutralDark-2 "> 
+
+    <section
+      class="full-bleed flex flex-col pt-8 pb-10 dark:bg-black/10 bg-white border-t border-b border-neutral-3 dark:border-neutralDark-2 ">
       <div class="max-w-[90rem]">
-        <div class="{{ .Site.Params.Prose }} pt-6 pb-8 text-center w-full max-w-none">
-          <h2 class="text-5xl font-normal text-brand-7 dark:text-brandDark-7">My Recent events</h2>
+        <div
+          class="{{ .Site.Params.Prose }} pt-6 pb-8 text-center w-full max-w-none">
+          <h2 class="text-5xl font-normal text-brand-7 dark:text-brandDark-7">
+            My Recent events
+          </h2>
         </div>
-        <ul class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-8">
-          {{ range first 3 (where site.RegularPages "Type" "in" "events" ) }}
+
+        {{ $ev := $.Scratch }}
+        {{ $ev.Set "lastEv" slice }}
+
+        {{ with $.Site.GetPage "section" "event" }}
+          {{ range .Data.Pages.GroupByParamDate "startDate" "2006" }}
+            {{ range .Pages }}
+              {{ $.Scratch.Add "lastEv" . }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        {{ $lastEv := $ev.Get "lastEv" }}
+        <ol
+          class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-8">
+          {{ range first 3 $lastEv }}
             {{ partial "thumb-exhibitions.html" (dict "ctx" . "type" "plain") }}
           {{ end }}
-        </ul>
+        </ol>
+
         <div class="flex justify-center">
           {{ partial "molecules/cta" (dict "ctx" . "type" "/events/" "color" "solid" "label" "View all events" "size" "xl") }}
         </div>
@@ -28,6 +47,3 @@
     </section>
   </main>
 {{ end }}
-
-
-

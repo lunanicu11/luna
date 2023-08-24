@@ -4,7 +4,8 @@
 <link rel="canonical" href="{{ .Permalink }}" />
 <title>
   {{ block "title" . }}
-    {{ with .Title }}{{ . }} |{{ end }}{{ .Site.Title }}
+    {{ with .Title }}{{ . }} |{{ end }}
+    {{ .Site.Title }}
   {{ end }}
 </title>
 <meta name="viewport" content="width=device-width,minimum-scale=1" />

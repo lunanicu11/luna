@@ -4,7 +4,7 @@
       {{ .Content }}
     </section>
 
-    <section class="">
+    <section>
       {{ $events := .Site.GetPage "section" "event" }}
 
       {{ range ($events.Pages.GroupByParamDate "startDate" "2006") }}
@@ -13,11 +13,10 @@
           <span class="sr-only">Events from </span>
           {{ .Key }}
         </h2>
-        {{/* {{ partial "site-breakpoints.html" }} */}}
-
+        {{ $ex := (.Pages.ByParam "startDate").Reverse }}
         <ul
           class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-6 mx-3 md:mx-2">
-          {{ range .Pages.ByParam "startDate" }}
+          {{ range $ex }}
             {{ partial "thumb-exhibitions.html" (dict "ctx" . "type" "") }}
           {{ end }}
         </ul>

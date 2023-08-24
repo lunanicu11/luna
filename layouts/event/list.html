@@ -1,19 +1,37 @@
 {{ define "main" }}
   <main class="block p-0 my-0 mx-auto max-w-[70rem]" role="main">
     <section class="{{ .Site.Params.Prose }} py-6 max-w-[80rem] mx-auto">
-      {{ .Content }}
+      {{ .Content }} -
     </section>
+    <hr />
     <section class="">
+      {{ $ev := $.Scratch }}
+      {{ $ev.Set "lastEv" slice }}
       {{ with .Site.GetPage "section" "events" }}
-        {{ range .Data.Pages.GroupByDate "2006" }}
+        {{ range .Data.Pages.GroupByParamDate "startDate" "2006" }}
           <h2
             class="mb-3 px-3 md:px-0 mt-0 text-neutral-10 dark:text-neutralDark-10 font-serif text-6xl font-bold">
             <span class="sr-only">Events from </span>
-            {{ .Key }}
+            - {{ .Key }} -
           </h2>
+          <hr />
+
+          <div class="prose">
+            {{ range .Pages.ByParam "startDate" }}
+              {{ . }}
+              {{ $.Scratch.Add "lastEv" . }}
+            {{ end }}
+
+            {{ $events := $ev.Get "lastEv" }}
+            {{ $events }}
+
+          </div>
+
           <ul
             class="p-0 grid grid-cols-[1fr] md:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-8">
-            {{ range .Pages }}
+            {{ $ex := .Pages.ByParam "startDate" }}
+            {{/* {{ $ex := .Pages.ByDate.Reverse }} */}}
+            {{ range $ex }}
               {{ partial "thumb-exhibitions.html" (dict "ctx" . "type" "") }}
             {{ end }}
           </ul>
