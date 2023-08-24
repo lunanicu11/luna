@@ -7,7 +7,7 @@ link: "https://www.rga-artists.org.uk/exhibitions-events.html"
 place: Home
 org: only for premium member
 solo: true
-endDate: 2024-12-09T23:00:00.000Z
+endDate: "2024-12-09T23:00:00.000Z"
 hour: only for premium member
 eventCategory: exhibition
 layout: event

@@ -30,12 +30,7 @@
 
   {{ $vars := $scssTemplate | resources.ExecuteAsTemplate "var.colors.scss" . | toCSS | minify | fingerprint }}
 
-  {{/*  body {
-    {{ range $colors }}
-    background: {{ . }}
-    {{ end }}
-  }  */}}
 <style data-colors>
-  {{ $vars.Content | safeCSS }}
+{{ $vars.Content | safeCSS }}
 </style>
 {{ end }}
